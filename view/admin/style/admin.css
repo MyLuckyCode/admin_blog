@@ -1,0 +1,136 @@
+body,html{
+	height:100%;
+}
+
+html{
+		overflow-y: hidden;
+}
+.body{
+	width:100%;
+	min-width:1080px;
+	display: flex;
+	height:100%;
+}
+.body .left{
+	width:205px;
+	flex:0 0 205px;
+	height:100%;
+	background:#313541;
+	height:100%;
+}
+.body .left .logo{
+	background:#00B38B;
+	width:205px;
+	height:86px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.body .left li{
+	width:205px;
+	height:53px;
+	line-height: 53px;
+	text-align: center;
+}
+.body .left li a{
+	display:block;
+	width:100%;
+	height:53px;
+	color:#707783;
+	font-size:16px;
+	transition: 0.5s;
+}
+.body .left li a i{
+	margin-right:5px;
+	display: inline-block;
+	transform: translateY(2px);
+}
+.body .left li a:hover{
+	color:#f6f5fa;
+	background:#272a34;
+}
+.body .left li a.active{
+	color:#f6f5fa;
+	background:#272a34;
+}
+.body .right{
+	flex:1;
+	height:100%;
+}
+.body .right .right-header{
+	height:87px;
+	width:100%;
+	display: flex;
+	justify-content:space-between;
+	flex-direction:row;
+	border-bottom: 1px solid #e5e4ee;
+}
+.body .right .right-header h2{
+	height:87px;
+	line-height: 86px;
+	margin-left:2%;
+	color:#454545;
+	font-size:28px;
+	font-weight:normal;
+}
+.body .right .right-header .user{
+	display: flex;
+	padding-right:20px;
+	align-items: flex-end;
+}
+
+.body .right .right-header .user span,.body .right .right-header .user .admin{
+	display: flex;
+	color:#454545;
+	height:55px;
+}
+
+.body .right .right-header .user .admin{
+	position:relative;
+}
+.body .right .right-header .user .admin i{
+	transform-origin: center;
+	height:23px;
+	transition: 0.5s;
+}
+.body .right .right-header .user .admin:hover > i{
+	transform: rotate(-180deg);
+}
+.body .right .right-header .user .admin:hover .userOperation{
+	opacity: 1;
+	visibility:visible;
+	top:36px;
+}
+.body .right .right-header .user .admin .userOperation{
+	opacity: 0;
+	position:absolute;
+	left:-12px;
+	top:26px;
+	width:84px;
+	padding:0 12px;
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+	transition: 0.5s;
+	background: #fff;
+	visibility:hidden;
+}
+.body .right .right-header .user .userOperation li{
+	font-size:14px;
+	border-bottom: 1px solid #e4e4e4;
+	height:38px;
+	line-height: 38px;
+}
+.body .right .right-header .user .userOperation li a:hover{
+	color:red;
+}
+.body .right .main{
+	display: flex;
+	height:calc(100% - 87px);
+}
+iframe{
+	width:100%;
+	height:100%;
+}
+
+i.iconfont-20{
+	font-size:20px;
+}

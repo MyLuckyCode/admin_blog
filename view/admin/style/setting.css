@@ -1,0 +1,96 @@
+
+body{
+	padding-left:2%;
+	padding-bottom: 5%;
+}
+
+
+
+.content{
+	padding-top:20px;
+	display: flex;
+}
+
+.content .form{
+	width:600px;
+	height:200px;
+}
+.content .form > strong{
+	display: inline-block;
+	padding-bottom: 20px;
+}
+.content .form > div{
+	width:500px;
+	display: flex;
+	margin-bottom: 20px;
+}
+.content .form .desc {
+	width:120px;
+	font-size:15px;
+	color:#606266;
+	flex:0 0 100px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.content .form .group-switch{
+	flex-wrap: wrap;
+}
+.content .form .group-switch .switch{
+	flex:0 0 100%;
+	display: flex;
+	margin-bottom: 15px;
+	align-items: center;
+	justify-content: flex-start;
+}
+.content .form .group-switch .switch .ps{
+	font-size:12px;
+	padding-left:15px;
+	color:#606266;
+}
+/*.content .form .group-switch .switch > span{
+	width:100px;
+	padding-right:20px;
+	color:#303133;
+	display: flex;
+	justify-content: flex-end;
+}*/
+
+
+.content .total{
+	
+}
+.content .total > strong{
+	display: inline-block;
+	margin-bottom: 10px;
+	width:100%;
+}
+.content .total .left{
+	width:150px;
+	float: left;
+	padding-left:15px;
+}
+.content .total .right{
+	width:150px;
+	float: left;
+}
+.content .total p{
+	 margin:10px 0;
+	 font-size:15px;
+     color:rgb(115,115,115);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

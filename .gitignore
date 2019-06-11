@@ -1,0 +1,16 @@
+# zend Studio 
+.settings
+
+# upload 
+upload/clippingImages/*
+upload/file/*
+upload/images/*
+upload/video/*
+
+# compile
+compile/*
+
+#cache 
+cache/*
+
+

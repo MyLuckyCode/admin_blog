@@ -1,0 +1,40 @@
+.error{
+	border:1px solid #BBDDE5;
+	background:#EEF8F9;
+	padding:10px;
+	margin:20px 10px;
+}
+.error p{
+	padding:0 10px 10px 10px;
+	color:red;
+}
+.error p a{
+	text-decoration: none;
+	color:#335b64;
+}
+.error p a:hover{
+	color:#f60;
+	text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

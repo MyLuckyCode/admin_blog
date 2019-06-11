@@ -1,0 +1,40 @@
+.succ{
+	border:1px solid #BBDDE5;
+	background:#EEF8F9;
+	padding:10px;
+	margin:20px 10px;
+}
+.succ p{
+	padding:0 10px 10px 10px;
+	color:green;
+}
+.succ p a{
+	text-decoration: none;
+	color:#335b64;
+}
+.succ p a:hover{
+	color:#f60;
+	text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

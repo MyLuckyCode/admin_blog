@@ -1,0 +1,81 @@
+
+
+body,html{
+	width:100%;
+	height:100%;
+	background: #efefef;
+}
+
+
+.superlogin{
+	width:100%;
+	height:50%;
+	background:rgba(64,158,255,1);
+}
+
+.loginBox{
+	width:100%;
+	height:500px;
+	margin-top:-300px;
+}
+.loginBox .loginMain{
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	width:418px;
+	height:315px;
+	background: #fff;
+	margin:auto;
+	padding:20px 40px;
+}
+.loginBox .loginMain dd{
+	font-size:16px;
+	color:#454545;
+	line-height: 50px;
+}
+.loginBox .loginMain .text{
+	display: inline-block;
+	width:252px;
+	height:35px;
+	padding:5px;
+	border:1px solid #cdcdcd;
+	margin:13px 0;
+}
+.loginBox .loginMain .btn{
+	width:102px;
+	height:42px;
+	color:#fff;
+	font-size:16px;
+	border-radius: 2px;
+	cursor: pointer;
+	border:none;
+}
+.loginBox .loginMain .btn.loginbtn{
+	background:rgba(64,158,255,1);
+	margin-left:50px;
+}
+
+.loginBox .loginMain .btn.resetbtn{
+	background:#999999;
+	margin-left:40px;
+}
+.loginBox .loginMain .btnView{
+	margin-top:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

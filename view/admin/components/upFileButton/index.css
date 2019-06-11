@@ -1,0 +1,81 @@
+
+
+
+.upButton{
+	position:relative;
+}
+.upButton .upItem{
+	position:absolute;
+	top:40px;
+	right:0;
+	width:500px;
+	padding:10px 20px;
+	background: #fff;
+	border:1px solid #ccc;
+	z-index: 1;
+}
+.upButton .upItem .upItem-item{
+	display: flex;
+	padding:10px 0;
+	 
+}
+.upButton .upItem .upItem-item > .name{
+	font-size:14px;
+	color:#606266;
+	width:130px;
+	flex:0 0 130px;
+	display: inline-block;
+  	white-space: nowrap; 
+  	overflow: hidden;
+  	text-overflow:ellipsis;
+}
+.upButton .upItem .upItem-item > .size{
+	display: inline-block;
+	padding-right:10px;
+	width:80px;
+	flex:0 0 80px;
+	color:#909399;
+	text-align:left;
+}
+.upButton .upItem .upItem-item > .progress{
+	flex:1;
+}
+.upButton .upItem .upItem-item > .cancel{
+	display: inline-block;
+	margin-left:10px;
+	font-size:14px;
+	color:#409EFF;
+	cursor: pointer;
+}
+.upButton .upItem .upItem-item > .abort{
+	color:rgba(64,158,255,0.6);
+	margin-left:10px;
+}
+.upButton .upItem .upItem-item > .loading{
+	display: inline-block;
+	margin-left:10px;
+	font-size:16px;
+	width:20px;
+	height:20px;
+	line-height: 20px;
+	text-align: center;
+    color:#409EFF;
+	animation: loading 2s linear infinite;
+}
+.upButton .upItem .upItem-item > .error{
+	color:rgb(226,177,39);
+	margin-left:10px;
+}
+
+.upButton .upItem .upItem-item > .success{
+	color:#409EFF;
+	margin-left:10px;
+}
+@keyframes loading{
+	 from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}

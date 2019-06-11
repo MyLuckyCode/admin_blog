@@ -1,0 +1,477 @@
+
+
+
+
+
+body{
+	padding-left:2%;
+	padding-bottom: 5%;
+	background: rgb(250,250,250);
+
+}
+
+.pictureList .el-tag{
+	margin-right:10px;
+	margin-bottom: 10px;
+	background:rgba(64,158,255,0.1);
+	height:32px;
+	line-height: 30px;
+	font-size:12px;
+	border-radius: 4px;
+	border:1px solid rgba(64,158,255,.2);
+	white-space:normal;
+	cursor: pointer;
+	padding:0;
+}
+.pictureList .el-tag.active{
+	background:rgba(64,158,255,1);
+}
+.pictureList .el-tag.active a{
+	color:#fff;
+}
+.pictureList .el-tag > a{
+	color:#409EFF;
+	display: inline-block;
+	padding:0 10px;
+}
+
+
+
+.pictureItemView{
+	width:100%;
+	min-height:150px;
+	margin-top:10px;
+	padding:20px 40px;
+	background: #fff;
+}
+
+.pictureItemView .header{
+	height:40px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+.pictureItemView .header .itemName{
+	font-size:20px;
+	font-weight: 600;
+	color:#303133;
+}
+.pictureItemView .header .itemName > a{
+	color:#606266;
+}
+
+.pictureItemView .header .upButton{
+	position:relative;
+}
+.pictureItemView .header .upButton .upItem{
+	position:absolute;
+	top:40px;
+	right:0;
+	width:500px;
+	padding:10px 20px;
+	background: #fff;
+	border:1px solid #ccc;
+	z-index: 1;
+}
+.pictureItemView .header .upButton .upItem .upItem-item{
+	display: flex;
+	padding:10px 0;
+	 
+}
+.pictureItemView .header .upButton .upItem .upItem-item > .name{
+	font-size:14px;
+	color:#606266;
+	width:130px;
+	flex:0 0 130px;
+	display: inline-block;
+  	white-space: nowrap; 
+  	overflow: hidden;
+  	text-overflow:ellipsis;
+}
+.pictureItemView .header .upButton .upItem .upItem-item > .size{
+	display: inline-block;
+	padding-right:10px;
+	width:80px;
+	flex:0 0 80px;
+	color:#909399;
+	text-align:left;
+}
+.pictureItemView .header .upButton .upItem .upItem-item > .progress{
+	flex:1;
+}
+.pictureItemView .header .upButton .upItem .upItem-item > .cancel{
+	display: inline-block;
+	margin-left:10px;
+	font-size:14px;
+	color:#409EFF;
+	cursor: pointer;
+}
+.pictureItemView .header .upButton .upItem .upItem-item > .abort{
+	color:rgba(64,158,255,0.6);
+	margin-left:10px;
+}
+.pictureItemView .header .upButton .upItem .upItem-item > .loading{
+	display: inline-block;
+	margin-left:10px;
+	font-size:16px;
+	width:20px;
+	height:20px;
+	line-height: 20px;
+	text-align: center;
+    color:#409EFF;
+	animation: loading 2s linear infinite;
+}
+.pictureItemView .header .upButton .upItem .upItem-item > .error{
+	color:rgb(226,177,39);
+	margin-left:10px;
+}
+
+.pictureItemView .header .upButton .upItem .upItem-item > .success{
+	color:#409EFF;
+	margin-left:10px;
+}
+
+
+.pictureItemView .body{
+	display: flex;
+	min-height:70px;
+}
+.pictureItemView .body p{
+	font-family: "PingFang SC";
+	flex:1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size:20px;
+	color:#666;
+}
+.pictureItemView .body .imagesList{
+	padding-top:40px;
+	width:100%;
+}
+.pictureItemView .body .imagesList .bat-tips{
+	padding:20px;
+	background: #F6F8F9;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+.pictureItemView .body .imagesList .bat-tips .info{
+	display: flex;
+	align-items: center;
+}
+.pictureItemView .body .imagesList .bat-tips .info span > i{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width:16px;
+	height:16px;
+	margin-right:5px;
+	border:1px solid #C9CDD3;
+	overflow: hidden;
+	background:#fff;
+	cursor:pointer;
+	color:#9A9A9A;
+}
+.pictureItemView .body .imagesList .bat-tips .info span > i.selected{
+	background: #fff;
+	color:#44B549;
+	font-size:10px;
+}
+
+.pictureItemView .body .imagesList .bat-tips .info :nth-child(2){
+	font-size:14px;
+	color:#353535;
+}
+.pictureItemView .body .imagesList .bat-tips .info > span.operation {
+	font-size:14px;
+	color:#353535;
+	cursor: pointer;
+	margin-left:5px;
+	color:#576B95;
+}
+.pictureItemView .body .imagesList .bat-tips .extra .extra-item{
+	margin-left:1px;
+	cursor: pointer;
+	font-size:18px;
+	color:#9B9B9B;
+}
+.pictureItemView .body .imagesList .page{
+	padding-top:10px;
+	text-align:right;
+}
+.pictureItemView .body .imagesList ul:after{
+	content:'';
+	display: block;
+	visibility: hidden;
+	height:0;
+	width:0;
+	clear:both;
+}
+.pictureItemView .body .imagesList .item{
+	cursor: pointer;
+	position:relative;
+	float:left;
+	width:160px;
+	margin:0 20px 30px 0;
+	text-align:center;
+}
+.pictureItemView .body .imagesList .item:hover .item-image{
+	background-color: rgba(64,158,255,0.2);;
+}
+.pictureItemView .body .imagesList .item:hover .checkbox{
+	display: block !important;
+}
+.pictureItemView .body .imagesList .item .item-image{
+	display: block;
+	width:100%;
+	height:auto;
+	background-size:contain;
+	background-position:50% 50%;
+	background-repeat: no-repeat;
+	padding-bottom:100%;
+	border:1px solid transparent;
+	overflow: hidden;
+	border-radius:3px;
+	box-sizing: content-box;
+	transition:0.3s;
+}
+.pictureItemView .body .imagesList .item .item-image.active{
+	background-color: rgba(64,158,255,0.5);;
+	border-color:rgba(64,158,255,0.5);;
+}
+.pictureItemView .body .imagesList .item .checkbox{
+	position:absolute;
+	top:10px;
+	left :10px;
+	display: none;
+	width:24px;
+	height:24px;
+	border-radius:2px;
+	border:1px solid #fff;
+	background: rgba(0,0,0,0.2);
+	cursor:pointer;
+	transition:0.5s;
+}
+.pictureItemView .body .imagesList .item .checkbox.active:before{
+	content:'\e625';
+	font-family: iconfont;
+	font-size:12px;
+	color: #fff;
+}
+.pictureItemView .body .imagesList .item .checkbox.active{
+	background: rgba(64,158,255,1);;
+}
+.pictureItemView .body .imagesList .item .image-name{
+	display: block;
+	position:relative;
+	margin-top:10px;
+	padding-top:10px;
+	height:40px;
+	
+}
+.pictureItemView .body .imagesList .item .image-name > span{
+	font-size:15px;
+	display: block;
+	white-space: nowrap; 
+	width: 100%;
+	height:100%;
+	line-height: 40px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	padding:0 10px;
+	background: #fff;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.pictureItemView .body .imagesList .item .image-name > span:hover{
+	background:rgba(64,158,255,0.1);
+}
+
+.pictureItemView .body .imagesList .item .image-name > input{
+	font-size:15px;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	line-height: 40px;
+	padding:0 10px;
+	outline: none;
+	color:#222;
+	border-radius: 3px;
+	border:1px solid #E4E8E8;
+}
+
+
+@keyframes loading{
+	 from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
