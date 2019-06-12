@@ -67,6 +67,21 @@ class ArticleAction extends Action{
         
     }
     
+    public function history(){
+        $this->_tpl->display(VIEW_ADMIN.'article/history.tpl');
+        $this->_tpl->assign('Style',$this->includesStyle('article_history'));   //注入css
+        $this->_tpl->assign('Script',$this->includesScript('article_history',['upFileButton','Tailoring','Gallery'])); //注入 script
+        $_nav=new NavModel();
+        $this->_tpl->assign('findAllNav', $_nav->findAllNav());
+        $_label=new LabelModel();
+        $this->_tpl->assign('findAllLabel', $_label->findAllLabel());
+        $_comment=array(1=>'允许评论',0=>'禁止评论');
+        $this->_tpl->assign('comment', $_comment);
+        $_source=array(1=>'原创',0=>'转载');
+        $this->_tpl->assign('source', $_source);
+        $this->_tpl->implement();
+    }
+    
     
 
     

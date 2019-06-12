@@ -43,6 +43,12 @@ new Vue({
 			fabulous:0,
 			disabled:false
 		},
+		history:{
+			allData:[],
+			data:[],
+			pageSize:5,
+			currentPage:1
+		},
 		GalleryFlag:false,
 		galleryEventType:'',//标识符，点击确定是会返回来，以便确定执行什么事件，比如裁剪，还是添加到编辑器
 		GallerySelect:'single',	// 确定是单选还是多选  muitiple 是多选
@@ -116,6 +122,31 @@ new Vue({
 				this.editorImg.style.height='auto';
 			}
 			
+		},
+		HistoryChangePage(val){
+			this.history.currentPage=val;
+			this.getHistory();
+
+		},
+		async getHistory(){
+			let history = this.history;
+			let start = (history.currentPage-1) * history.pageSize;
+        	let end=history.pageSize;
+
+			let html=[];
+        
+	        let i=0;
+	        for(let k=0;k<history.allData.length;k++){
+	        	if(k>=start && i<end){
+	        		html.push(history.allData[k]);
+	        		i++;
+	        		if(i==end) break;
+	        	}
+	        }
+	        history.data=html;
+		},
+		goHistory(id){
+			window.open('?a=article&m=history&id='+id);
 		},
 		async postAddBrand(){
 			
@@ -241,6 +272,16 @@ new Vue({
 		this.articleFaceUrl='?a=images&uniqueId='+this.form.face;
 		this.form.disabled=(this.form.disabled==1 ? true : false);
 		this.editor.txt.html(this.form.content);
+
+		//获取历史版本
+		let res1 = await axios.get('?a=AdminAjax&m=getArticleHistory',{
+			params:{
+				pid:query['id'],
+			}
+		});
+		console.log(res1)
+		this.history.allData=res1.data.content;
+		this.getHistory();
 	}
 })
 

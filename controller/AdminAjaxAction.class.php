@@ -226,9 +226,20 @@ class AdminAjaxAction extends Action{
         }
     }
     
-    public function getArticleOne(){    //获取一条
+    public function getArticleOne(){    //获取一条文章
         $_article=new ArticleModel();
         echo json_encode($_article->findOne());
+    }
+    
+    public function getArticleHistoryOne(){     //获取一条历史记录文章
+        $_articleHistory=new ArticleHistoryModel();
+        echo json_encode($_articleHistory->findOne());
+    }
+    
+    public function getArticleHistory(){    //获取文章历史版本
+        $_articleHistory = new ArticleHistoryModel();
+        echo json_encode( $_articleHistory->getHistory());
+        
     }
     
     public function editArticle(){         //修改文章

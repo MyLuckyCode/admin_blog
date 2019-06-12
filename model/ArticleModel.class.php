@@ -25,7 +25,12 @@ class ArticleModel extends Model{
         $total->setCount('article',1);
         $total->setLastDate('lastDate', Tool::getDate());
         
-        return parent::add($_addData);
+        if(parent::add($_addData)){
+            $id = parent::lastInsertId();
+            $_articleHistory = new ArticleHistoryModel();
+            $_addData['pid']=$id;
+            return $_articleHistory->addArticleHistory($_addData);
+        }else return false;
     }
     
     public function findOne(){  //获取一条 后台ajax用
@@ -44,7 +49,15 @@ class ArticleModel extends Model{
         $total=new TotalModel();
         $total->setLastDate('lastDate', Tool::getDate());
         
-        return parent::update($_updateData, $_where);
+        if(parent::update($_updateData, $_where)){
+            
+            $_articleHistory = new ArticleHistoryModel();
+            $_updateData['pid']=$this->_R['id'];
+            $_updateData['date']=Tool::getDate();
+            return $_articleHistory->addArticleHistory($_updateData);
+            
+        }else return false;
+
     }
     
     public function findAll($_pageCurrent,$page_size){     //后台模版调用
@@ -129,8 +142,7 @@ class ArticleModel extends Model{
     public function getSearch(){
         $_start=($_GET['page']-1)*$_GET['page_size'];
         $_end=$_GET['page_size'];
-        $_where = array("title like '%{$this->_R['s']}%' OR keyword like '%{$this->_R['s']}%' OR a.info like '%{$this->_R['s']}%'","a.disabled=1");
-        
+        $_where = array("(title like '%{$this->_R['s']}%' OR keyword like '%{$this->_R['s']}%' OR a.info like '%{$this->_R['s']}%')","a.disabled=1");
         $this->_tables=array(DB_FREFIX.'article a LEFT JOIN blog_nav b ON a.nav=b.id');
         $_all=parent::select(array('a.id','a.title','a.nav','a.label','a.face','a.info','a.fabulous','a.flagComment','a.commentCount','a.roof',
             'a.readCount','a.keyword','a.source','a.author','a.disabled','a.date','b.name NavName'),

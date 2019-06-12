@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>后台管理——修改文章</title>
+	<title>后台管理——历史文章</title>
 	
 	{$Style}
 
@@ -11,8 +11,8 @@
 	
 <div class="title">	
 	<div class="titleView">
-		<h3>修改文章</h3>
-		<span @click="goShow">返回文章列表</span>
+		<h3>查看历史文章</h3>
+<!-- 		<span @click="goShow">返回文章列表</span> -->
 	</div>
 </div>
 
@@ -21,27 +21,6 @@
 	<div class="form">
 		<div class="name">
 			<span>标　题：</span> <el-input placeholder="标题" size="small" style="width:350px;" v-model="form.title" show-word-limit maxlength="50"></el-input>
-			<div>
-
-				    <el-popover
-					  	placement="bottom"
-						style="padding:0"
-						width="180"
-					  	>
-					  		<div class="historyItem" v-for="(item) in history.data" @click="goHistory(item.id)">
-								{{item.date}}
-					  		</div>
-					  		<el-pagination style="text-align: right;"
-							  small
-							  :page-size="5"
-							  @current-change="HistoryChangePage"
-							  layout="prev, pager, next"
-							  :total="6">
-							</el-pagination>
-					  	<p style="line-height: 32px;padding-left:10px;font-size:15px;color: #909399;" slot="reference">图文历史版 <i style="margin-left:-10px;" class="iconfont iconicon-xiasanjiao"></i></p>
-					</el-popover>
-
-			</div>
 		</div>
 		<div class="nav">
 			<span>导　航：</span>
@@ -74,7 +53,7 @@
 				<img :src="articleFaceUrl" v-if="articleFaceUrl!=''" alt="" class="face-img">
 				<div class="select">
 					<span>从本地选择</span>
-					<span @click="openGallery('clipping')">从图库选择</span>
+					<span>从图库选择</span>
 				</div>
 			</div>
 			<span style="padding-left:15px;">建议图片尺寸为 225*150</span>
@@ -112,11 +91,6 @@
 			<el-switch
 				v-model="form.disabled">
 			</el-switch>
-		</div>
-		<Gallery :galleryflag.sync="GalleryFlag" v-if="GalleryFlag" :event-type="galleryEventType" :select="GallerySelect" @confirm="galleryConfirm" ></Gallery>
-		<Tailoring :tailoringflag.sync="Tailoringflag" v-if="Tailoringflag" :event-type="tailoringEventType" :src="clippingImageUrl" :clipping-info="clippingInfo" @confirm="TailoringConfirm"></Tailoring>
-		<div class="submit">
-			<el-button type="primary" @click="postAddBrand" :loading="!addArticleBth">修改</el-button>
 		</div>
 	</div>
 
