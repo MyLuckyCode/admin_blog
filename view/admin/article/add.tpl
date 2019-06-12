@@ -86,6 +86,12 @@
 			<span>点赞量：</span>
 			<el-input placeholder="" style="width:100px;" v-model="form.fabulous" size="mini" show-word-limit maxlength="4"></el-input>
 		</div>
+		<div class="disabled">
+			<span>启　用：</span>
+			<el-switch
+				v-model="form.disabled">
+			</el-switch>
+		</div>
 		<Gallery :galleryflag.sync="GalleryFlag" v-if="GalleryFlag" :event-type="galleryEventType" :select="GallerySelect" @confirm="galleryConfirm" ></Gallery>
 		<Tailoring :tailoringflag.sync="Tailoringflag" v-if="Tailoringflag" :event-type="tailoringEventType" :src="clippingImageUrl" :clipping-info="clippingInfo" @confirm="TailoringConfirm"></Tailoring>
 		<div class="submit">

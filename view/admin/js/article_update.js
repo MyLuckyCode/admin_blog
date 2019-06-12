@@ -2,7 +2,10 @@
 
 
 
-
+let beforeunloadFN =function(e){
+	e.returnValue="关闭数据将丢失";
+};
+window.addEventListener('beforeunload',beforeunloadFN)
 
 
 new Vue({
@@ -37,7 +40,8 @@ new Vue({
 			source:1,
 			author:'',
 			readCount:0,
-			fabulous:0
+			fabulous:0,
+			disabled:false
 		},
 		GalleryFlag:false,
 		galleryEventType:'',//标识符，点击确定是会返回来，以便确定执行什么事件，比如裁剪，还是添加到编辑器
@@ -152,6 +156,7 @@ new Vue({
 			for(let i in form){
 				data.append(i,form[i]);
 			}
+			data.append('disabled',form.disabled ? 1 : 0);
 			delete form.id
 			let res = await axios.post('?a=AdminAjax&m=editArticle&id='+id,data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
@@ -164,6 +169,7 @@ new Vue({
 		          duration: 0
 		        });
 				setTimeout(()=>{
+					window.removeEventListener('beforeunload',beforeunloadFN);
 
 					let query = Url();
 					query['page'] = query['page']==undefined ? 1 : query['page'];
@@ -233,19 +239,10 @@ new Vue({
 		this.form.flagComment=parseInt(this.form.flagComment);
 		this.form.source=parseInt(this.form.source);
 		this.articleFaceUrl='?a=images&uniqueId='+this.form.face;
-
+		this.form.disabled=(this.form.disabled==1 ? true : false);
 		this.editor.txt.html(this.form.content);
 	}
 })
-
-
-
-
-
-window.onbeforeunload=function(){
-	return true;
-}
-
 
 
 

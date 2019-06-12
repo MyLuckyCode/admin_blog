@@ -37,13 +37,13 @@
 				{foreach from=$findAll item=value key=key}
 				<div class="tableBodyItem">
 					<div class="tableItem-1 tableItem">{$key}</div>
-					<div class="tableItem-2 tableItem">{$value->content}</div>
+					<div class="tableItem-2 tableItem" title="{$value->content}" >{$value->content}</div>
 					<div class="tableItem-3 tableItem">{$value->email}</div>
 					<div class="tableItem-4 tableItem">
 						{$value->name}
 					</div>
 					
-					<div class="tableItem-5 tableItem">{$value->content_id}</div>
+					<div class="tableItem-5 tableItem" title="{$value->content_id}">{$value->content_id}</div>
 					<div class="tableItem-6 tableItem" title="{$value->date}">{$value->smallDate}</div>
 					<div class="tableItem-7 tableItem">
 						<div class="btn">

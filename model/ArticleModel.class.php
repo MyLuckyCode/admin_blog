@@ -3,7 +3,7 @@
 
 class ArticleModel extends Model{
     private $_fields=array('title','nav','label','face','info','content','fabulous','flagComment',
-                            'readCount','keyword','source','author','commentCount','roof','date','update_date');
+                            'readCount','keyword','source','author','commentCount','roof','disabled','date','update_date');
     protected $_tables=array(DB_FREFIX.'article');
     public function __construct(){
         parent::__construct();
@@ -32,7 +32,7 @@ class ArticleModel extends Model{
         $_where=array("id='{$this->_R['id']}'");
         if(!$this->isOne($_where)) return array('state'=>'error','info'=>'该文档不存在');
         $_all=parent::select(array('id','title','nav','label','face','info','content','fabulous','flagComment','roof',
-            'readCount','keyword','source','author','date'),array('where'=>$_where,'limit'=>1));
+            'readCount','keyword','source','author','disabled','date'),array('where'=>$_where,'limit'=>1));
         return array('state'=>'succ','data'=>$_all[0]);
     }
     
@@ -52,7 +52,7 @@ class ArticleModel extends Model{
         $_end=$page_size;
         $this->_tables=array(DB_FREFIX.'article a LEFT JOIN '.DB_FREFIX.'nav b ON a.nav=b.id');
         $_all=parent::select(array('a.id','a.title','a.nav','a.label','a.face','a.info','a.content','a.fabulous','a.flagComment','a.commentCount',
-                           'a.roof','a.readCount','a.keyword','a.date','a.source','a.author','a.date smallDate','b.name NavName'),
+                           'a.roof','a.readCount','a.keyword','a.date','a.source','a.author','a.disabled','a.date smallDate','b.name NavName'),
             array('limit'=>"$_start,$_end",'order'=>'roof DESC,date DESC'));
         $this->_tables=array(DB_FREFIX.'label');
         foreach($_all as $key=>$value){
@@ -105,7 +105,7 @@ class ArticleModel extends Model{
         $_type=isset($_GET['type']) ? $_GET['type'] :'web';
         
         if(is_numeric($_type)){
-            $_where=array("nav={$_type}");
+            $_where=array("nav={$_type}","a.disabled=1");
         }else {
             $_where=array("category='{$_type}'");
             $this->_tables=array(DB_FREFIX.'nav');
@@ -117,23 +117,23 @@ class ArticleModel extends Model{
             }
            
             $_nav=implode(',',$_tem);
-            $_where=array("nav in ($_nav)");
+            $_where=array("a.disabled=1","nav in ($_nav)");
         }
         
         $this->_tables=array(DB_FREFIX.'article a LEFT JOIN blog_nav b ON a.nav=b.id');
         $_all=parent::select(array('a.id','a.title','a.nav','a.label','a.face','a.info','a.fabulous','a.flagComment','a.commentCount','a.roof',
-            'a.readCount','a.keyword','a.source','a.author','a.date','b.name NavName'),array('where'=>$_where,'limit'=>"$_start,$_end",'order'=>'roof DESC,date DESC'));
+            'a.readCount','a.keyword','a.source','a.author','a.disabled','a.date','b.name NavName'),array('where'=>$_where,'limit'=>"$_start,$_end",'order'=>'roof DESC,date DESC'));
         return $_all;
     }
     
     public function getSearch(){
         $_start=($_GET['page']-1)*$_GET['page_size'];
         $_end=$_GET['page_size'];
-        $_where = array("title like '%{$this->_R['s']}%' OR keyword like '%{$this->_R['s']}%' OR a.info like '%{$this->_R['s']}%'");
+        $_where = array("title like '%{$this->_R['s']}%' OR keyword like '%{$this->_R['s']}%' OR a.info like '%{$this->_R['s']}%'","a.disabled=1");
         
         $this->_tables=array(DB_FREFIX.'article a LEFT JOIN blog_nav b ON a.nav=b.id');
         $_all=parent::select(array('a.id','a.title','a.nav','a.label','a.face','a.info','a.fabulous','a.flagComment','a.commentCount','a.roof',
-            'a.readCount','a.keyword','a.source','a.author','a.date','b.name NavName'),
+            'a.readCount','a.keyword','a.source','a.author','a.disabled','a.date','b.name NavName'),
             array('where'=>$_where,'order'=>'roof DESC,date DESC'));
         
         $html=array();
@@ -152,13 +152,6 @@ class ArticleModel extends Model{
         return $tem;
     }
     
-    public function getSearchTotal(){
-
-        $_where = array("title like '%{$this->_R['s']}%' OR keyword like '%{$this->_R['s']}%' OR a.info like '%{$this->_R['s']}%'");
-        
-        return $_all;
-    }
-    
     public function findIndexOne(){   //前端 ajax调用,获取 详情
         $_where=array("id='{$this->_R['id']}'");
         if(!$this->isOne($_where)) return array('info'=>'no');
@@ -169,17 +162,17 @@ class ArticleModel extends Model{
         return $_all[0];
     }
     
-    public function getArticleNext(){       //获取下一条
+    public function getArticlePrev(){       //获取下一条
         $this->_tables=array(DB_FREFIX.'article');
-        $_where=array('id=(select min(id) from '.DB_FREFIX.'article where id>'.$this->_R['id'].')');
+        $_where=array('id=(select min(id) from '.DB_FREFIX.'article where id>'.$this->_R['id'].' AND disabled=1)');
         $_all=parent::select(array('id','title'), array('where'=>$_where));
         if(empty($_all)) $_all[0]='到底了~';
         return $_all[0];
     }
     
-    public function getArticlePrev(){          //获取上一条
+    public function getArticleNext(){          //获取上一条
         $this->_tables=array(DB_FREFIX.'article');
-        $_where=array('id=(select max(id) from '.DB_FREFIX.'article where id<'.$this->_R['id'].')');
+        $_where=array('id=(select max(id) from '.DB_FREFIX.'article where id<'.$this->_R['id'].' AND disabled=1)');
         $_all=parent::select(array('id','title'), array('where'=>$_where));
         if(empty($_all)) $_all[0]='不能在上了~';
         return $_all[0];
@@ -191,7 +184,7 @@ class ArticleModel extends Model{
        $_type=isset($_GET['type']) ? $_GET['type'] :'web';
         
         if(is_numeric($_type)){
-            $_where=array("nav={$_type}");
+            $_where=array("nav={$_type}","disabled=1");
         }else {
             $_where=array("category='{$_type}'");
             $this->_tables=array(DB_FREFIX.'nav');
@@ -201,7 +194,7 @@ class ArticleModel extends Model{
                 array_push($_tem,$_value->id);
             }
             $_nav=implode(',',$_tem);
-            $_where=array("nav in ($_nav)");
+            $_where=array("nav in ($_nav)","disabled=1");
         }
         $this->_tables=array(DB_FREFIX.'article');
         return parent::total($_where);
@@ -209,11 +202,11 @@ class ArticleModel extends Model{
     
     
     public function getHot(){ //获取热门文章--前台
-        return parent::select(array('id','title','readCount'), array('order'=>'readCount DESC','limit'=>'5'));
+        return parent::select(array('id','title','readCount'), array('where'=>array("disabled=1"),'order'=>'readCount DESC','limit'=>'5'));
     }
     
     public function getUpdate(){ //获取最近更新文章--前台
-        return parent::select(array('id','title','face','date'), array('order'=>'update_date DESC','limit'=>'5'));
+        return parent::select(array('id','title','face','date'), array('where'=>array("disabled=1"),'order'=>'update_date DESC','limit'=>'5'));
     }
     
     
@@ -253,6 +246,12 @@ class ArticleModel extends Model{
     public function setFlagComment(){
         $_where=array("id='{$this->_R['id']}'");
         $_updateData=array('flagComment'=>$_GET['value']);
+        return parent::update($_updateData, $_where);
+    }
+    
+    public function setDisabled(){
+        $_where=array("id='{$this->_R['id']}'");
+        $_updateData=array('disabled'=>$_GET['value']);
         return parent::update($_updateData, $_where);
     }
       

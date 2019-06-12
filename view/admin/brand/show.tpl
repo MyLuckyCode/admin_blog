@@ -48,8 +48,8 @@
 				{foreach from=$findAll item=value key=key}
 				<div class="tableBodyItem">
 					<div class="tableItem-1 tableItem">{$key}</div>
-					<div class="tableItem-2 tableItem">{$value->title}</div>
-					<div class="tableItem-3 tableItem">{$value->target}</div>
+					<div class="tableItem-2 tableItem" title="{$value->title}">{$value->title}</div>
+					<div class="tableItem-3 tableItem" title="{$value->target}">{$value->target}</div>
 					<div class="tableItem-4 tableItem">
 						<img src="?a=images&uniqueId={$value->imgUrl}" alt="">
 					</div>

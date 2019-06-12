@@ -265,7 +265,15 @@ class AdminAjaxAction extends Action{
         }else {
             echo '{"state":"error","info":"设置失败"}';
         }
-    }               
+    }        
+    public function setArticleDisabled(){   //设置文章是否显示
+        $_article=new ArticleModel();
+        if($_article->setDisabled()){
+            echo '{"state":"succ","info":"设置成功"}';
+        }else {
+            echo '{"state":"error","info":"设置失败"}';
+        }
+    }
     public function setArticleFocus(){   //设置焦点文章
         $_system=new SystemModel();
         if($_system->setArticleFocus()){

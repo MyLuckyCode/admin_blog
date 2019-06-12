@@ -58,6 +58,20 @@ new Vue({
 				    });
 		    	}
 		},
+		async setDisabled(id,value){
+			let res = await axios.get('?a=AdminAjax&m=setArticleDisabled',{
+		    		params:{id,value}
+		    	})
+
+			if(res.data.state=='succ'){
+		    		window.location.reload();
+		    	}else {
+		    		this.$notify.error({
+				        title: '错误',
+				        message: res.data.info
+				    });
+		    	}
+		},
 		async setRoof(id,value){
 			let res = await axios.get('?a=AdminAjax&m=setArticleRoof',{
 		    		params:{id,value}

@@ -40,7 +40,8 @@ new Vue({
 			source:1,
 			author:'博主',
 			readCount:0,
-			fabulous:0
+			fabulous:0,
+			disabled:true
 		},
 		GalleryFlag:false,
 		galleryEventType:'',//标识符，点击确定是会返回来，以便确定执行什么事件，比如裁剪，还是添加到编辑器
@@ -154,7 +155,7 @@ new Vue({
 			for(let i in form){
 				data.append(i,form[i]);
 			}
-
+			data.append('disabled',form.disabled ? 1 : 0);
 			let res = await axios.post('?a=AdminAjax&m=addArticle',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			console.log(res);
