@@ -38,7 +38,7 @@
 							  layout="prev, pager, next"
 							  :total="6">
 							</el-pagination>
-					  	<p style="line-height: 32px;padding-left:10px;font-size:15px;color: #909399;" slot="reference">图文历史版 <i style="margin-left:-10px;" class="iconfont iconicon-xiasanjiao"></i></p>
+					  	<p style="line-height: 32px;padding-left:10px;font-size:15px;color: #909399;" slot="reference">图文历史版 <i style="margin-left:-6px;" class="iconfont iconicon-xiasanjiao"></i></p>
 					</el-popover>
 
 			</div>
