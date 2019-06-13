@@ -46,7 +46,7 @@ new Vue({
 		history:{
 			allData:[],
 			data:[],
-			pageSize:5,
+			pageSize:8,
 			currentPage:1
 		},
 		GalleryFlag:false,

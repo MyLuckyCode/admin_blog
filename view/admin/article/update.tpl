@@ -26,17 +26,18 @@
 				    <el-popover
 					  	placement="bottom"
 						style="padding:0"
-						width="180"
+						width="240"
 					  	>
 					  		<div class="historyItem" v-for="(item) in history.data" @click="goHistory(item.id)">
 								{{item.date}}
 					  		</div>
 					  		<el-pagination style="text-align: right;"
 							  small
-							  :page-size="5"
+							  :page-size="history.pageSize"
+							  :pager-count="5"
 							  @current-change="HistoryChangePage"
 							  layout="prev, pager, next"
-							  :total="6">
+							  :total="history.allData.length">
 							</el-pagination>
 					  	<p style="line-height: 32px;padding-left:10px;font-size:15px;color: #909399;" slot="reference">图文历史版 <i style="margin-left:-6px;" class="iconfont iconicon-xiasanjiao"></i></p>
 					</el-popover>
