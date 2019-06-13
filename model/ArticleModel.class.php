@@ -61,12 +61,24 @@ class ArticleModel extends Model{
     }
     
     public function findAll($_pageCurrent,$page_size){     //后台模版调用
+        
+        if(isset($this->_R['s']) && !empty($this->_R['s'])){
+            $tem =implode(explode(" ",$this->_R['s']),'');
+            if(!empty($tem)){
+                $_where = array("(title like '%{$this->_R['s']}%' OR keyword like '%{$this->_R['s']}%' OR a.info like '%{$this->_R['s']}%')");
+            }else {
+                $_where =null;
+            }
+        }else {
+            $_where =null;
+        }
+        
         $_start=($_pageCurrent-1)*$page_size;
         $_end=$page_size;
         $this->_tables=array(DB_FREFIX.'article a LEFT JOIN '.DB_FREFIX.'nav b ON a.nav=b.id');
         $_all=parent::select(array('a.id','a.title','a.nav','a.label','a.face','a.info','a.content','a.fabulous','a.flagComment','a.commentCount',
                            'a.roof','a.readCount','a.keyword','a.date','a.source','a.author','a.disabled','a.date smallDate','b.name NavName'),
-            array('limit'=>"$_start,$_end",'order'=>'roof DESC,date DESC'));
+            array('where'=>$_where,'limit'=>"$_start,$_end",'order'=>'roof DESC,date DESC'));
         $this->_tables=array(DB_FREFIX.'label');
         foreach($_all as $key=>$value){
            
@@ -97,7 +109,18 @@ class ArticleModel extends Model{
     }
     
     public function getTotal(){     //后台模版用
-        return parent::total();
+        if(isset($this->_R['s']) && !empty($this->_R['s'])){
+            $tem =implode(explode(" ",$this->_R['s']),'');
+            if(!empty($tem)){
+                $_where = array("(title like '%{$this->_R['s']}%' OR keyword like '%{$this->_R['s']}%' OR info like '%{$this->_R['s']}%')");
+            }else {
+                $_where =null;
+            }
+        }else {
+            $_where =null;
+        }
+        
+        return parent::total($_where);
     }
     
     public function deleteArticle(){   //后台模版用

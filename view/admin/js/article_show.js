@@ -22,6 +22,9 @@ new Vue({
 
 new Vue({
 	el:'.content',
+	data:{
+		searchContent:''
+	},
 	methods:{
 		 deleteArticle(id){
 			this.$confirm('此操作将永久删除该信息, 是否继续?', '提示', {
@@ -109,7 +112,18 @@ new Vue({
 			}
 			str = str.substr(1);
 			window.location.href="?"+str
+		},
+		goSearch(){
+			if(this.searchContent=='' || this.searchContent.split(' ').join("")=='') return false;
+			window.location.href="?a=article&s="+this.searchContent;
 		}
+	},
+	created(){
+		let query = Url();
+		if(decodeURI(query['s']) != 'undefined'){
+			this.searchContent=decodeURI(query['s']);
+		}
+
 	}
 })
 

@@ -110,7 +110,15 @@
 				    :total="{$total}">
 				</el-pagination>
 			</div>
-			
+			<div class="search">
+				<div class="c">
+					<input type="text" v-model="searchContent">
+					<div class="icon" @click="goSearch">
+						<i class="iconfont iconsearch4"></i>
+					</div>
+					
+				</div>
+			</div>
 
 		</div>
 	</div>
