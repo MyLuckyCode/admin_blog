@@ -16,7 +16,24 @@ class ImagesAction extends Action{
             header("Cache-Control: private, max-age=10800, pre-check=10800");
             header("Pragma: private");
             header("Expires: " . date(DATE_RFC822,strtotime(" 2 day")));
-            Up::Initial($_GET['uniqueId']);
+            
+            $uniqueId = $_GET['uniqueId'];
+            $url = './upload/clippingImages/'.$uniqueId;
+            if(isset($_GET['type']) && $_GET['type']=='small'){
+                $url = './upload/thumbnail/'.$uniqueId;
+                if(!file_exists($url)){
+                    $url = './upload/clippingImages/'.$uniqueId;
+                }
+            }
+            
+            if(!file_exists($url)){
+                header('Content-Type:image/png');
+                $tempImg=imagecreatefrompng('./image/noPic.png');
+                imagepng($tempImg);
+                exit;
+            }
+            
+            Up::Initial($url);
         }
         
     }

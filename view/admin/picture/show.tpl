@@ -40,7 +40,7 @@
 	<span>相 册：</span>
 
 	{foreach from=$pictureList item=value key=key}
-		<span class="el-tag {if $value->id==$tpl.get.type}active{/if}" >
+		<span class="el-tag {if isset($tpl.get.type) && $value->id==$tpl.get.type}active{/if}" >
 			<a href="?a=picture&type={$value->id}">{$value->name} ( {$value->count} ) </a>
 			
 		</span>
@@ -200,7 +200,7 @@
 							{if $value->type=='gif'}	
 						    	<i class="item-image" :class="{'active' : isCheckBox({$value->id},{$value->pid})}" style="background-image:url(./upload/clippingImages/{$value->uniqueId})"></i>
 							{else}
-								<i class="item-image" :class="{'active' : isCheckBox({$value->id},{$value->pid})}" style="background-image:url(?a=images&uniqueId={$value->uniqueId})"></i>
+								<i class="item-image" :class="{'active' : isCheckBox({$value->id},{$value->pid})}" style="background-image:url(?a=images&uniqueId={$value->uniqueId}&type=small)"></i>
 							{/if}
 						    <div class="image-name">
 						    	<input type="text" value="{$value->name}" @blur="editImageName({$value->id})" style="display:none;" id="image-name-input-{$value->id}" >

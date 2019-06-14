@@ -6,12 +6,16 @@ class Up{
     static public function UpImg(){		//图片上传
         $_route=self::getUrl('images');
         if(move_uploaded_file($_FILES['file']['tmp_name'],ROOT_PATH.$_route)){
+            
             $_pictureItem = new PictureItemModel();
             $_route='.'.$_route;
             $uniquId = Tool::getUnique().'.'.self::getImageType();
             
             $d = explode('-', date("Y-y-m-d-H-i-s"));
             if($_pictureItem->addImage($_route, $_FILES['file']['name'],$d[0].$d[2].$d[3].'/'.$uniquId)) {
+                
+                $thumbnailUrl = self::getUrl('thumbnail',$d[0].$d[2].$d[3].'/'.$uniquId);
+                self::thumbnail(ROOT_PATH.$_route, 120,'min',$thumbnailUrl);
                 
                 $images = new ImagesModel();
                 
@@ -20,6 +24,12 @@ class Up{
                 return '{"state":"succ","url":"'.$_route.'"}';
             } else return '{"state":"error"}';
         }
+    }
+    
+    static public function setRouter($router){
+        $_parStart='/images/';
+        $str = preg_replace($_parStart,"thumbnail",$router);
+        return $str;
     }
     
     static public function getUrl($_type='images',$fileName=null){   //获取地址，内部专用
@@ -58,13 +68,8 @@ class Up{
     }
     
     static public function Initial($url){  //输出本地图片
-        $url='./upload/clippingImages/'.$url;
-        if(!file_exists($url)){
-            header('Content-Type:image/png');
-            $tempImg=imagecreatefrompng('./image/noPic.png');
-            imagepng($tempImg);
-            exit;
-        }
+       
+        
         $info=getimagesize($url);
         $w=$info[0];
         $h=$info[1];
@@ -231,6 +236,72 @@ class Up{
                 break;
         }
         imagedestroy($newImage);
+    }
+    
+    /*
+     $pic  图片地址
+     $size  压缩后图片的大小
+     $type  min代表压缩后图片的长或宽最小是$size     max代表压缩后图片的长或宽最大是$size 
+     $url  压缩后保存图片的地址
+     */
+    static public function thumbnail($pic,$size,$type,$url){
+        $info=getimagesize($pic);
+        $w=$info[0];
+        $h=$info[1];
+        switch($info[2]){
+            case 1:
+                $im=imagecreatefromgif($pic);
+                break;
+            case 2:
+                $im=imagecreatefromjpeg($pic);
+                break;
+            case 3:
+                $im=imagecreatefrompng($pic);
+                break;
+        }
+        
+        
+        /*
+        if($type=='max'){
+            if($w>$h){
+                $p = $size/$w;
+            }else {
+                $p = $size/$h;
+            }
+        }else if($type=='min'){
+            if($w>$h){
+                $p = $size/$h;
+            }else {
+                $p = $size/$w;
+            }
+        }
+        */
+        if($w>$h){
+            $p = $type=='min' ? $size/$h : $size/$w ;
+        }else  $p = $type=='min' ? $size/$w : $size/$h ;
+
+    
+    
+        $nw=floor($w*$p);
+        $nh=floor($h*$p);
+        $nim=imagecreatetruecolor($nw,$nh);
+        imagecopyresampled($nim,$im,0,0,0,0,$nw,$nh,$w,$h);
+        $picinfo=pathinfo($pic);
+        switch($info[2])
+        {
+            case 1:
+                imagegif($nim,'.'.$url);
+                break;
+            case 2:
+                imagejpeg($nim,'.'.$url);
+                break;
+            case 3:
+                imagepng($nim,'.'.$url);
+                break;
+        }
+        imagedestroy($im);
+        imagedestroy($nim);
+        //return $picinfo['dirname']."/".$spr.$picinfo["basename"];
     }
     
 }

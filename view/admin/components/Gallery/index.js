@@ -51,7 +51,7 @@ Vue.component('Gallery',{
 									<label>{{item.activeFlag}}
 
 										<img class="Gallery-img" :src="'./upload/clippingImages/'+item.uniqueId" alt="" v-if="item.type=='gif'" />
-										<img class="Gallery-img" :src="'?a=images&uniqueId='+item.uniqueId" alt="" v-else />
+										<img class="Gallery-img" :src="'?a=images&uniqueId='+item.uniqueId+'&type=small'" alt="" v-else />
 										<div class="Gallery-active iconfont icondui" v-if="pictureItem.selectList.hasOwnProperty('id'+item.id)"></div>
 									</label>
 									<span class="Gallery-name">{{item.name}}</span>

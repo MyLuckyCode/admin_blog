@@ -13,4 +13,5 @@ compile/*
 #cache 
 cache/*
 
-
+# log
+log/*

@@ -8,7 +8,6 @@ class PictureAction extends Action{
     
     public function index(){
         $this->_tpl->display(VIEW_ADMIN.'picture/show.tpl');
-        
         $this->_tpl->assign('Style',$this->includesStyle('picture'));   //注入css
         $this->_tpl->assign('Script',$this->includesScript('picture')); //注入 script
         
