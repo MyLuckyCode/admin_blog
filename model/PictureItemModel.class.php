@@ -43,7 +43,7 @@ class PictureItemModel extends Model{
         }else {
             $_where=array("pid=$pid");
         }
-        $_all = parent::select(array('id','name','url','pid','uniqueId'), array('where'=>$_where,'limit'=>"$_start,$_end",'order'=>'date DESC'));
+        $_all = parent::select(array('id','name','url','pid','uniqueId'), array('where'=>$_where,'limit'=>"$_start,$_end",'order'=>'id DESC'));
         foreach($_all as $key=>$value){
             $array=explode('.',$value->uniqueId);
             $value->type=$array[count($array)-1];

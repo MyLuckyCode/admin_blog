@@ -88,6 +88,7 @@ let pictureItemView = new Vue({
 		},
 		checkBoxIdList:{},
 		checkBoxIdListAll:{},
+		checkBoxIdListAllIndex:0,
 		bat_tips:{
 			deleteFlag:false,
 			moveFlag:false,
@@ -117,15 +118,18 @@ let pictureItemView = new Vue({
 			},
 			initialInput:'',
 			postInput:''
-		}
+		},
+		pictrueViewerFlag:false
 	},
 	methods:{
+		setPictrueViewer(key){
+			this.checkBoxIdListAllIndex=key;
+			this.pictrueViewerFlag=true;
+		},
 		handleSuccess(res,file,fileList){
 			this.$set(this.upImage.fileData[file.uid],'loading','success');
 			console.log(res)
 			this._upFileComplete();
-			
-			
 		},
 		_upFileComplete(){
 
@@ -248,11 +252,12 @@ let pictureItemView = new Vue({
 			 }
 
 		},
-		isCheckBox(id,pid){
+		isCheckBox(id,pid,uniqueID){
 
 			// 获取当前页面图片的全部ID，用于做全部选择或取消选择
 			if(!this.checkBoxIdListAll.hasOwnProperty(id)){ 
-				this.checkBoxIdListAll[id]={id,pid}
+				console.log(this.checkBoxIdListAll);
+				this.checkBoxIdListAll[id]={id,pid,uniqueID}
 			}
 			return this.checkBoxIdList.hasOwnProperty(id);
 		},

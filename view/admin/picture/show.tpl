@@ -50,6 +50,7 @@
 
 
 <div class="pictureItemView">
+	<pictrueviewer :pictrueviewerflag.sync="pictrueViewerFlag" v-show="pictrueViewerFlag" :check-box-id-list-all="checkBoxIdListAll" :index="checkBoxIdListAllIndex" ></pictrueviewer>
 	<div class="header">
 		<div class="itemName">
 			{if isset($tpl.get.type)}
@@ -195,18 +196,17 @@
 				</div>
 				<ul>
 					{foreach from=$imgList item=value key=key}
-
-						<li class="item" >
+						<li class="item" @click="setPictrueViewer({$key})" >
 							{if $value->type=='gif'}	
-						    	<i class="item-image" :class="{'active' : isCheckBox({$value->id},{$value->pid})}" style="background-image:url(./upload/clippingImages/{$value->uniqueId})"></i>
+						    	<i class="item-image" :class="{'active' : isCheckBox({$value->id},{$value->pid},'{$value->uniqueId}')}" style="background-image:url(./upload/clippingImages/{$value->uniqueId})"></i>
 							{else}
-								<i class="item-image" :class="{'active' : isCheckBox({$value->id},{$value->pid})}" style="background-image:url(?a=images&uniqueId={$value->uniqueId}&type=small)"></i>
+								<i class="item-image" :class="{'active' : isCheckBox({$value->id},{$value->pid},'{$value->uniqueId}')}" style="background-image:url(?a=images&uniqueId={$value->uniqueId}&type=small)"></i>
 							{/if}
 						    <div class="image-name">
 						    	<input type="text" value="{$value->name}" @blur="editImageName({$value->id})" style="display:none;" id="image-name-input-{$value->id}" >
 								<span @click="setImageName({$value->id})" id="image-name-span-{$value->id}">{$value->name}</span>
 						    </div>
-						    <label class="checkbox" :class="{'active' : isCheckBox({$value->id},{$value->pid})}" :style="{display:isCheckBox({$value->id},{$value->pid}) ? 'block' : 'none'}" @click="handleCheckBox({$value->id},{$value->pid})">
+						    <label class="checkbox" :class="{'active' : isCheckBox({$value->id},{$value->pid})}" :style="{display:isCheckBox({$value->id},{$value->pid}) ? 'block' : 'none'}" @click.stop="handleCheckBox({$value->id},{$value->pid})">
 						    </label>
 						 </li>
 						

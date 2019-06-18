@@ -1,0 +1,144 @@
+#PictrueViewer{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.8);
+	position:fixed;
+	top:0;
+	left:0;
+	Z-index:9999;
+	
+}
+
+#PictrueViewer .PictrueViewer-c{
+	height:765px;
+	width:1100px;
+	display:flex;
+	flex-direction:cloumn;
+}
+#PictrueViewer .PictrueViewer-c .a{
+	flex:50px;
+	width:50px;
+	color:#666;
+	font-weight:bold;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	transition:1s;
+	cursor:pointer;
+}
+#PictrueViewer .PictrueViewer-c .a i{
+	font-size:30px;
+}
+#PictrueViewer .PictrueViewer-c .a:hover{
+	color:#ccc;
+}
+#PictrueViewer .close{
+	position:absolute;
+	top:-25px;
+	right:-25px;
+	width:25px;
+	height:25px;
+	z-index:1000;
+	color:#ccc;
+	cursor:pointer;
+}
+#PictrueViewer .close i{
+	font-weight:bold;
+	font-size:20px;
+}
+#PictrueViewer .close:hover{
+	color:#fff;
+}
+#PictrueViewer .content{
+	position:absolute;
+	top:0;
+	width:1000px;
+	height:700px;
+	overflow:hidden;
+	z-index:998;
+}
+#PictrueViewer .content img{
+	max-width:100%;
+	max-height:100%;
+	position:absolute;
+	top:0px;
+	left:0px;
+	bottom:0;
+	right:0;
+	margin:auto;
+	transform:scale(1);
+}
+#PictrueViewer .loading{
+	width:1000px;
+	height:700px;
+	margin:0 auto;
+	position:absolute;
+	top:0;
+	left:0px;
+	Z-index:999;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	
+}
+#PictrueViewer .loading i{
+	font-size:30px;
+	color:#fff;
+	animation: Gallery-loading 2s linear infinite;
+}
+#PictrueViewer .operation{
+	height:65px;
+	width:100%;
+	position:absolute;
+	bottom:0;
+	text-align:center;
+}
+#PictrueViewer .operation a{
+	display:inline-block;
+	width:80px;
+	height:65px;
+	line-height:65px;
+	text-align:center;
+	text-decoration:none;
+	color:#ccc;
+	font-size:20px;
+	letter-spacing:3px;
+	transition:0.5s;
+}
+#PictrueViewer .operation a i{
+	font-size:30px;
+}
+#PictrueViewer .operation a:hover{
+	color:#eee;
+}
+
+
+@keyframes Gallery-loading{
+	 from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
