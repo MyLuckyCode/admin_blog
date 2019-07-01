@@ -25,7 +25,6 @@ class Factory{
     
     static public function setModel(){
         $_a=self::getA();
-        if($_a=='images')return;
         if(file_exists(ROOT_PATH.'model/'.ucfirst($_a).'model.class.php')) eval('self::$_obj = new '.ucfirst($_a).'Model();');
         return self::$_obj;
     }

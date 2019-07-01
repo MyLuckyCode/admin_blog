@@ -2,11 +2,11 @@
 
 
 class Model extends DB{
-    private $_pdo;
+    //private $_pdo;
     protected $_check;
     protected $_R=array();
     public function __construct(){
-        $this->_pdo=parent::getInstance();
+        //$this->_pdo=parent::getInstance();
     }
     
     public function add($_addData,$_seat1=null){

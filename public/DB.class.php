@@ -10,10 +10,18 @@ class DB{
         return self::$_instance;
     }
     
+    public function __get($key){
+        
+        if($key=='_pdo'){
+            return $this->getInstance();
+        }else return $this->$key;
+    }
+    
     private function __clone(){}
     // array(PDO::ATTR_PERSISTENT => true
     private function __construct(){
         try {
+            
             //$this->_pdo=new PDO(DB_DNS,DB_USER,DB_PASS);
             $this->_pdo=new PDO(DB_DNS,DB_USER,DB_PASS, array(PDO::ATTR_PERSISTENT => true));
             $this->_pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
