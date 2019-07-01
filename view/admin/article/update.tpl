@@ -124,6 +124,7 @@
 
 
 <script type="text/javascript" src="./view/admin/js/wangEditor.js"></script>
+<script type="text/javascript" src="./view/admin/js/format.js"></script>
 {$Script}
 
 

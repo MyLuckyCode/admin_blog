@@ -120,7 +120,8 @@ new Vue({
 		async postAddBrand(){
 			
 			let form=this.form;
-			form.content = this.editor.txt.html()
+			let format = new Format();
+			form.content = format.htmlparser(this.editor.txt.html())
 
 			if(form.title==''){
 				this.$notify({title:'提示',message: '请输入标题',type: 'warning'});
