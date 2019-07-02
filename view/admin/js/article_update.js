@@ -53,7 +53,7 @@ new Vue({
 		galleryEventType:'',//标识符，点击确定是会返回来，以便确定执行什么事件，比如裁剪，还是添加到编辑器
 		GallerySelect:'single',	// 确定是单选还是多选  muitiple 是多选
 		Tailoringflag:false,
-		tailoringEventType:'',
+		tailoringEventType:'',	//标识符，点击确定是会返回来，以便确定执行什么事件，比如添加封面，还是添加到编辑器
 		clippingInfo:{width:225,height:150,proportion:true,compute:'info'},
 		clippingImageUrl:'',
 		articleFaceUrl:'',
@@ -98,7 +98,7 @@ new Vue({
 				}
 			}else if(eventType=='imgReplace'){
 				for(let i in list){
-					console.log(list[i].type)
+					//console.log(list[i].type)
 					if(list[i].type=='gif'){
 						//this.editor.cmd.do('insertHTML', `<img src="./upload/clippingImages/${list[i].uniqueId}" Lsrc="?a=images&uniqueId=${list[i].uniqueId}" style="max-width:100%;"/>`)
 						this.editorImg.Lsrc='?a=images&uniqueId='+list[i].uniqueId;
@@ -178,7 +178,7 @@ new Vue({
 		        return ;
 			}
 			if(form.info==''){
-				form.info=this.editor.txt.text().substr(0,150);
+				form.info=this.editor.txt.text().replace(/\\s|\n/g,'').substr(0,150);
 			}
 			this.addArticleBth=false;
 			form.label=form.label.join(',');

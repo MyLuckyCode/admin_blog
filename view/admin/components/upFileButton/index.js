@@ -16,7 +16,7 @@ if(heads.length) heads[0].appendChild(link);
 else doc.documentElement.appendChild(link);
 
 
-Vue.component('upFileButton',{
+Vue.component('upfilebutton',{
 	template:`
 			<div class="upButton">
 				<el-upload
@@ -29,7 +29,7 @@ Vue.component('upFileButton',{
 					multiple
 					:accept="upImage.accept"
 					name="file"
-					:data="upImage.data"
+					:data="upData"
 					:show-file-list=false
 					ref="upFileBtn"
 					:limit="10">
@@ -60,26 +60,24 @@ Vue.component('upFileButton',{
 				upImage:{
 					type:this.upType!=undefined ? this.upType : [],
 					size:this.upSize!=undefined ? this.upSize : 5,
-					data:this.data!=undefined ? this.data : {},
+					sendData:this.upData!=undefined ? this.upData : {},
 					accept:this.upAccept!=undefined ? this.upAccept : "image/gif, image/jpeg,image/png,image/jpg",
 					fileData:{},
 					fileList:[] // 组件返回的文件列表，用于 取消文件 上传
 				}
 			}
 	},
-	watch:{
-		'upData'(){
-			this.upImage.data=this.upData;
-		}
-	},
-	created(){
-		
-	},
+
 	methods:{
 		handleSuccess(res,file,fileList){
-			this.$set(this.upImage.fileData[file.uid],'loading','success');
-			console.log(this.upImage.data)
-			this._upFileComplete();
+			
+			if(res.state=='succ'){
+				this.$set(this.upImage.fileData[file.uid],'loading','success');
+				this._upFileComplete();
+			}else {
+				this.$set(this.upImage.fileData[file.uid],'loading','error');
+				this._upFileComplete();
+			}
 			console.log(res)
 			
 		},
@@ -101,8 +99,8 @@ Vue.component('upFileButton',{
 			if(flag){
 				setTimeout(()=>{
 					this.upImage.fileData={};
-					this.$emit('upComplete');
-				},1000)
+					this.$emit('up-complete');
+				},500)
 			}
 		},
 		handleError(res,file,fileList){
@@ -145,9 +143,9 @@ Vue.component('upFileButton',{
 			return result;
 		},
 		handleBeforeUpload(file){
-
+			console.log(file.type,this.upImage.type)
 			//判断图片类型
-			if(!this.upImage.type.includes(file.type)){
+			if((!this.upImage.type.includes(file.type)) && this.upImage.type.length!=0){
 				this.$notify({
 		          title: '提示',
 		          message: '文件格式必须是 png/jpg/gif',

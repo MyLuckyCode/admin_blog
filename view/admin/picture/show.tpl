@@ -103,37 +103,13 @@
 		</div>
 		
 		<div class="upButton">
-			<el-upload
-				class="upload-demo"
-				action="?a=AdminAjax&m=upImg"
-				:on-success="handleSuccess"
-				:on-progress="handleProgres"
-				:before-upload="handleBeforeUpload"
-				:on-error="handleError"
-				multiple
-				accept="image/gif, image/jpeg,image/png,image/jpg"
-				name="file"
-				:data="{pid:{$pid}}"
-				:show-file-list=false
-				ref="upFileBtn"
-				:limit="10">
-				<el-button size="small" type="primary">点击上传<i class="el-icon-upload el-icon--right"></i></el-button>
-			</el-upload>
 
-			<div class="upItem" v-if="Object.keys(upImage.fileData).length>0">
-				<div class="upItem-item" v-for="(item,key) in upImage.fileData" :key="item.id">
-					<span class="name">{{item.name}}</span>
-					<span class="size">({{item.size}})</span>
-					<span class="progress">
-						<el-progress :percentage="item.progress" :stroke-width="6"  :text-inside="true"></el-progress>
-					</span>
-					<span class="cancel" @click="cancelUpFile(item.uid)" v-if="item.loading=='send'" >取消</span>
-					<span class="abort" v-if="item.loading=='abort'" ><i class="iconfont iconquxiaoshangchuan-"></i></span>
-					<span class="loading" v-else-if="item.loading=='loading'" ><i class="iconfont iconloading"></i></span>
-					<span class="error" v-else-if="item.loading=='error'" ><i class="iconfont iconshangchuanshibai"></i></span>
-					<span class="success" v-else-if="item.loading=='success'" ><i class="iconfont iconshangchuanchenggong"></i></span>
-				</div>
-			</div>
+			<upfilebutton
+				:up-size="5"
+				:up-type="['image/png','image/jpeg','image/jpg','image/gif']"
+				:up-data="{pid:{$pid}}"
+				@up-complete="upComplete"
+			/>
 
 		</div>
 

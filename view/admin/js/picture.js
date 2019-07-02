@@ -95,12 +95,6 @@ let pictureItemView = new Vue({
 			deleteBtnFlag:true,
 			moveBtnFlag:true
 		},
-		upImage:{
-			type:['image/png','image/jpeg','image/jpg','image/gif'],
-			size:5,
-			fileData:{},
-			fileList:[] // 组件返回的文件列表，用于 取消文件 上传
-		},
 		itemNameHeader:{
 			deleteFlag:false,
 			editFlag:false,
@@ -126,111 +120,10 @@ let pictureItemView = new Vue({
 			this.checkBoxIdListAllIndex=key;
 			this.pictrueViewerFlag=true;
 		},
-		handleSuccess(res,file,fileList){
-			this.$set(this.upImage.fileData[file.uid],'loading','success');
-			console.log(res)
-			this._upFileComplete();
+		upComplete(){
+			location.reload();
 		},
-		_upFileComplete(){
 
-			//状态，出现即代表还有文件未完成
-			let loadingArr = ['loading','send'];
-
-			//是否刷新页面
-			let flag=true;
-			for(let i in this.upImage.fileData){
-				if(loadingArr.includes(this.upImage.fileData[i].loading)){
-
-					//当前有文件未完成，不能刷新页面
-					flag=false;
-
-					break;
-				}
-			}
-
-			if(flag){
-				setTimeout(()=>{
-					location.reload();
-				},1000)
-			}
-		},
-		handleError(res,file,fileList){
-			this.$set(this.upImage.fileData[file.uid],'loading','error');
-			this._upFileComplete();
-		},
-		cancelUpFile(uid){		//取消文件上传
-			this.fileList.forEach((item,index)=>{
-				if(item.uid==uid){
-					this.$refs.upFileBtn.abort(item);
-					this.$set(this.upImage.fileData[uid],'progress',0);
-					this.$set(this.upImage.fileData[uid],'loading','abort');
-				}
-			})
-			this._upFileComplete();
-
-		},
-		handleProgres(event,file,fileList){
-			this.fileList=fileList;
-			//file.uid
-			//console.log(fileList)
-			let loaded = event.loaded;
-			let total = event.total;
-			let progress = ((loaded/total)*100);
-			//console.log(progress);
-			//let o = JSON.parse(JSON.stringify(this.upImage.fileData[file.uid]));
-			if(progress==100){
-				console.log(progress);
-				this.$set(this.upImage.fileData[file.uid],'loading','loading');
-			}
-			this.$set(this.upImage.fileData[file.uid],'progress',progress);
-			//console.log(this.upImage.fileData)
-		},
-		setFileSize(size){
-			let result='';
-			if(size/1024 >= 1000){
-				result=Math.floor(size/1024/1024*100)/100+'M';
-			}else {
-				result=Math.floor(size/1024*100)/100+'K';
-			}
-			return result;
-		},
-		handleBeforeUpload(file){
-
-			//判断图片类型
-			if(!this.upImage.type.includes(file.type)){
-				this.$notify({
-		          title: '提示',
-		          message: '文件格式必须是 png/jpg/gif',
-		          type: 'warning',
-		          duration: 6000
-		        });
-		        return false;
-			}
-			//判断图片大小
-			if((file.size/1024/1024)>this.upImage.size){
-				this.$notify({
-		          title: '提示',
-		          message: file.name+'文件大小不得超过'+this.upImage.size+'M',
-		          type: 'warning',
-		          duration: 6000
-		        });
-		        return false;
-			}
-
-
-			let size = this.setFileSize(file.size);
-
-			console.log(size);
-			let o={
-				uid:file.uid,
-				name:file.name,
-				size,
-				loading:'send',
-				progress:0
-			}
-			//this.upImage.fileData[file.uid]=o;
-			this.$set(this.upImage.fileData,file.uid,o);
-		},
 		handleCurrentChange(pageCurrent){
 			
 			let query = Url();
@@ -256,7 +149,7 @@ let pictureItemView = new Vue({
 
 			// 获取当前页面图片的全部ID，用于做全部选择或取消选择
 			if(!this.checkBoxIdListAll.hasOwnProperty(id)){ 
-				console.log(this.checkBoxIdListAll);
+				//console.log(this.checkBoxIdListAll);
 				this.checkBoxIdListAll[id]={id,pid,uniqueID}
 			}
 			return this.checkBoxIdList.hasOwnProperty(id);
@@ -448,110 +341,3 @@ function Url(){
 	}
 	return query;
 }
-
-/*
-let list = new Vue({
-	el:'#list',
-	data:{
-		activeName:'web',
-		navData: [],
-		editNavViewVisible:false,
-		editForm:{},
-		editNavBtn:true
-	},
-	async created(){
-		let res = await axios.get('?a=AdminAjax&m=getNavList');
-		this.navData=res.data;
-	},
-	computed:{
-		navDataWeb(){
-			let arr = [];
-			this.navData.map((item)=>{
-				if(item.category=='web') arr.push(item);
-			})
-			return arr;
-		},
-		navDataLife(){
-			let arr = [];
-			this.navData.map((item)=>{
-				if(item.category=='life') arr.push(item);
-			})
-			return arr;
-		}
-	},
-	methods:{
-		handleDeleteNav(id){
-			console.log(id)
-			this.$confirm('此操作将永久删除, 是否继续?', '提示', {
-	          	confirmButtonText: '确定',
-	          	cancelButtonText: '取消',
-	          	type: 'warning'
-	        }).then( async () => {
-	        	let data=new FormData();
-	        	data.append('id',id);
-	        	let res = await axios.post('?a=AdminAjax&m=deleteNav',data,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
-				this.$message(res.data.info);
-				console.log(res.data.state)
-				if(res.data.state=='succ'){
-					this.navData.forEach((item,index)=>{
-						if(item.id==id){
-							this.navData.splice(index,1);
-						}
-					})
-				}
-	          	
-	        });
-		},
-		handleEdit(form){
-			this.editNavViewVisible=true;
-			let newData = JSON.parse(JSON.stringify(form));
-			this.editForm=newData;
-		},
-		async editNav(){
-			
-			if(this.editForm.name==undefined || this.editForm.name==''){
-				this.$message({message:'标题不能为空',type:'warning'});
-				return;
-			};
-
-			this.editNavBtn=false;
-			let data = new FormData();
-			for(let i in this.editForm){
-				data.append(i,this.editForm[i]);
-			}
-			let res = await axios.post('?a=AdminAjax&m=editNav',data,
-				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
-
-			this.editNavBtn=true;
-			if(res.data.state=="succ") {	//修改成功
-
-				let newNavData = this.navData.map((item)=>{
-					if(item.id==this.editForm.id) return this.editForm;
-					return item;
-				})
-				this.navData=newNavData;
-
-				this.editForm={};
-				this.$set(this.editForm,'category','web');
-				this.editNavViewVisible=false;
-				this.$notify({
-		          title: '提示',
-		          message: res.data.info,
-		          type: 'success',
-		          duration: 6000
-		        });
-
-
-			}else{
-				this.$notify({
-		          title: '提示',
-		          message: res.data.info,
-		          type: 'warning',
-		          duration: 0
-		        });
-			}
-			
-		}
-	}
-})
-*/

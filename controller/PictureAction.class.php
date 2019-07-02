@@ -9,7 +9,7 @@ class PictureAction extends Action{
     public function index(){
         $this->_tpl->display(VIEW_ADMIN.'picture/show.tpl');
         $this->_tpl->assign('Style',$this->includesStyle('picture'));   //注入css
-        $this->_tpl->assign('Script',$this->includesScript('picture',['PictrueViewer'])); //注入 script
+        $this->_tpl->assign('Script',$this->includesScript('picture',['UpFileButton','PictrueViewer'])); //注入 script
         
         $_pictureItemModel = new PictureItemModel();
          // 0 代表查找全部

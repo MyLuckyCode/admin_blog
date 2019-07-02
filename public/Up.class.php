@@ -5,6 +5,7 @@ class Up{
     
     static public function UpImg(){		//图片上传
         $_route=self::getUrl('images');
+
         if(move_uploaded_file($_FILES['file']['tmp_name'],ROOT_PATH.$_route)){
             
             $_pictureItem = new PictureItemModel();

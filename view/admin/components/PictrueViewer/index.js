@@ -18,9 +18,9 @@ else doc.documentElement.appendChild(link);
 
 Vue.component('pictrueviewer',{
 	template:`
-		<div id="PictrueViewer">
+		<div id="PictrueViewer" @click="closePictrueView" >
 			
-			<div class="PictrueViewer-c">
+			<div class="PictrueViewer-c" @click.stop>
 				<div class="upper a" @click="upper"><i class="iconfont icontubiaozhizuo- "></i></div>
 				<div style="position: relative;height:765px;width:1000px;" >
 					<div class="close" @click.stop="closePictrueView"><i class="iconfont iconguanbi "></i></div>

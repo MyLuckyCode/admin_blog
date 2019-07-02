@@ -36,11 +36,11 @@ Vue.component('Gallery',{
 					</div>
 					<div class="Gallery-main">
 						<div class="Gallery-sub-title-bar">
-							<upFileButton
-								:upSize="5"
-								:upType="['image/png','image/jpeg','image/jpg','image/gif']"
-								:upData="{pid:(pictureItem.type !=0 ? pictureItem.type : 1)}"
-								@upComplete="upComplete"
+							<upfilebutton
+								:up-size="5"
+								:up-type="['image/png','image/jpeg','image/jpg','image/gif']"
+								:up-data="{pid:(pictureItem.type !=0 ? pictureItem.type : 1)}"
+								@up-complete="upComplete"
 							/>
 						</div>
 						<div class="Gallery-imgList-loading" v-if="pictureItem.list.length<=0"><i class="iconfont iconloading"></i></div>

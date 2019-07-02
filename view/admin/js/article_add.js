@@ -148,7 +148,7 @@ new Vue({
 		        return ;
 			}
 			if(form.info==''){
-				form.info=this.editor.txt.text().substr(0,150);
+				form.info=this.editor.txt.text().replace(/\\s|\n/g,'').substr(0,150);
 			}
 			this.addArticleBth=false;
 			form.label=form.label.join(',');
