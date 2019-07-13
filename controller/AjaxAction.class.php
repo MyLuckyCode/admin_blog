@@ -3,7 +3,7 @@
 class AjaxAction extends Action{
     
     public function __construct(){
-        //header('Access-Control-Allow-Origin:*');
+        header('Access-Control-Allow-Origin:*');
     }
     
 

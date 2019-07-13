@@ -32,9 +32,9 @@ class CommentModel extends Model{
                 foreach($all as $key=>$value){
                     if($value->content_id==$v){
                         if(isset($one) && !empty($one)){
-                            $value->content_id=$one[0]->title;
+                            $value->content_title=$one[0]->title;
                         }else{
-                            $value->content_id='<span style="color:red;">改文章可能已经删除</span>';
+                            $value->content_title='<span style="color:red;">改文章可能已经删除</span>';
                         }
                     }
                 }            
@@ -52,7 +52,8 @@ class CommentModel extends Model{
         
         $total=new TotalModel();
         $total->setCount('comment',-1);
-        
+        $article = new ArticleModel();
+		$article->setCommentCount($_GET['content_id'],-1);
         return parent::delete($_where);
     }
     

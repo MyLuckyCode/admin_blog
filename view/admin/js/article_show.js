@@ -32,7 +32,7 @@ new Vue({
 		        cancelButtonText: '取消',
 		        type: 'warning'
 		    }).then(async () => {
-		    	let res = await axios.get('?a=AdminAjax&m=deleteArticle',{
+		    	let res = await axios.get('./api/admin/v1.0/?a=article&m=deleteArticle',{
 		    		params:{id}
 		    	})
 		    	if(res.data.state=='succ'){
@@ -48,7 +48,7 @@ new Vue({
 	        });
 		},
 		async focusArticle(id){
-			let res = await axios.get('?a=AdminAjax&m=setArticleFocus',{
+			let res = await axios.get('./api/admin/v1.0/?a=article&m=setArticleFocus',{
 		    		params:{id}
 		    	})
 			console.log(res)
@@ -62,7 +62,7 @@ new Vue({
 		    	}
 		},
 		async setDisabled(id,value){
-			let res = await axios.get('?a=AdminAjax&m=setArticleDisabled',{
+			let res = await axios.get('./api/admin/v1.0/?a=article&m=setArticleDisabled',{
 		    		params:{id,value}
 		    	})
 
@@ -76,7 +76,7 @@ new Vue({
 		    	}
 		},
 		async setRoof(id,value){
-			let res = await axios.get('?a=AdminAjax&m=setArticleRoof',{
+			let res = await axios.get('./api/admin/v1.0/?a=article&m=setArticleRoof',{
 		    		params:{id,value}
 		    	})
 
@@ -90,7 +90,7 @@ new Vue({
 		    	}
 		},
 		async setFlagComment(id,value){
-			let res = await axios.get('?a=AdminAjax&m=setArticleFlagComment',{
+			let res = await axios.get('./api/admin/v1.0/?a=article&m=setArticleFlagComment',{
 		    		params:{id,value}
 		    	})
 			if(res.data.state=='succ'){

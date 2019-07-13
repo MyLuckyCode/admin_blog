@@ -22,7 +22,7 @@ new Vue({
 			for(let i in this.form){
 				data.append(i,this.form[i]);
 			}
-			let res = await axios.post('?a=AdminAjax&m=addTime',data,
+			let res = await axios.post('./api/admin/v1.0/?a=time&m=addTime',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			this.addTimeBtn=true;
 			console.log(res.data)
@@ -76,7 +76,7 @@ let list = new Vue({
 	        }).then( async () => {
 	        	let data=new FormData();
 	        	data.append('id',id);
-	        	let res = await axios.post('?a=AdminAjax&m=deleteTime',data,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
+	        	let res = await axios.post('./api/admin/v1.0/?a=time&m=deleteTime',data,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 				this.$message(res.data.info);
 				console.log(res.data.state)
 				if(res.data.state=='succ'){
@@ -106,7 +106,7 @@ let list = new Vue({
 			for(let i in this.editForm){
 				data.append(i,this.editForm[i]);
 			}
-			let res = await axios.post('?a=AdminAjax&m=editTime',data,
+			let res = await axios.post('./api/admin/v1.0/?a=time&m=editTime',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 
 			this.editTimeBtn=true;
@@ -147,7 +147,7 @@ let list = new Vue({
 		async _getTimeData(){
 			let query = Url();
 			let page = query['page'] ? query['page'] : 1;
-			let res = await axios.get('?a=AdminAjax&m=getTimeList',{
+			let res = await axios.get('./api/admin/v1.0/?a=time&m=getTimeList',{
 				params:{page}
 			});
 			this.TimeData=res.data.content;

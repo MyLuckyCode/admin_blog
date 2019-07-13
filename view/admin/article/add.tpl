@@ -93,9 +93,10 @@
 			</el-switch>
 		</div>
 		<Gallery :galleryflag.sync="GalleryFlag" v-if="GalleryFlag" :event-type="galleryEventType" :select="GallerySelect" @confirm="galleryConfirm" ></Gallery>
+		<Format :formatflag.sync="FormatFlag" v-if="FormatFlag" :event-type="formatEventType" :select="formatSelect" @confirm="formatConfirm" ></Format>
 		<Tailoring :tailoringflag.sync="Tailoringflag" v-if="Tailoringflag" :event-type="tailoringEventType" :src="clippingImageUrl" :clipping-info="clippingInfo" @confirm="TailoringConfirm"></Tailoring>
 		<div class="submit">
-			<el-button type="primary" @click="postAddBrand" :loading="!addArticleBth">添加</el-button>
+			<el-button type="primary" @click="postAddArticle" :loading="!addArticleBth">添加</el-button>
 		</div>
 	</div>
 

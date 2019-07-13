@@ -49,6 +49,9 @@ new Vue({
 			pageSize:8,
 			currentPage:1
 		},
+		FormatFlag:false,
+		formatEventType:'editor',//标识符，点击确定是会返回来，以便确定执行什么事件，比如裁剪，还是添加到编辑器
+		formatSelect:'single',	// 确定是单选还是多选  muitiple 是多选  single是单选
 		GalleryFlag:false,
 		galleryEventType:'',//标识符，点击确定是会返回来，以便确定执行什么事件，比如裁剪，还是添加到编辑器
 		GallerySelect:'single',	// 确定是单选还是多选  muitiple 是多选
@@ -80,6 +83,14 @@ new Vue({
 				this.clippingInfo={proportion:false,compute:'img'}
 			}
 			this.Tailoringflag=true;
+		},
+		formatConfirm(list,eventType){
+			if(eventType=='editor'){
+				for(let i in list){
+					this.editor.cmd.do('insertHTML', list[i].content)
+				}
+			}
+			console.log(list,eventType)
 		},
 		galleryConfirm(list,eventType){
 			
@@ -148,7 +159,7 @@ new Vue({
 		goHistory(id){
 			window.open('?a=article&m=history&id='+id);
 		},
-		async postAddBrand(){
+		async postEditArticle(){
 			
 			let form=this.form;
 			let format = new Format();
@@ -189,7 +200,7 @@ new Vue({
 			}
 			data.append('disabled',form.disabled ? 1 : 0);
 			delete form.id
-			let res = await axios.post('?a=AdminAjax&m=editArticle&id='+id,data,
+			let res = await axios.post('./api/admin/v1.0/?a=article&m=editArticle&id='+id,data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 
 			if(res.data.state=='succ'){
@@ -229,7 +240,11 @@ new Vue({
 		   // this.editor.cmd.do('insertHTML', `<img src="http://pic32.nipic.com/20130823/13339320_183302468194_2.jpg" style="max-width:100%;"/>`)
 		})
 		
-		
+		this.editor.addTabEvent('pattern',()=>{
+		    console.log('执行自定义的pattern事件')
+		    this.FormatFlag=true;
+		   // this.editor.cmd.do('insertHTML', `<img src="http://pic32.nipic.com/20130823/13339320_183302468194_2.jpg" style="max-width:100%;"/>`)
+		})
 
 		this.editor.txt.html(this.form.content);
 		let that=this;
@@ -254,7 +269,7 @@ new Vue({
 	},
 	async created(){
 		let query=Url();
-		let res = await axios.get('?a=AdminAjax&m=getArticleOne',{
+		let res = await axios.get('./api/admin/v1.0/?a=article&m=getArticleOne',{
 			params:{
 				id:query['id']
 			}
@@ -274,7 +289,7 @@ new Vue({
 		this.editor.txt.html(this.form.content);
 
 		//获取历史版本
-		let res1 = await axios.get('?a=AdminAjax&m=getArticleHistory',{
+		let res1 = await axios.get('./api/admin/v1.0/?a=article&m=getArticleHistory',{
 			params:{
 				pid:query['id'],
 			}

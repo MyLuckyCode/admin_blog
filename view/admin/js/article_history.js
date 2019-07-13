@@ -59,7 +59,7 @@ new Vue({
 	},
 	async created(){
 		let query=Url();
-		let res = await axios.get('?a=AdminAjax&m=getArticleHistoryOne',{
+		let res = await axios.get('./api/admin/v1.0/?a=article&m=getArticleHistoryOne',{
 			params:{
 				id:query['id']
 			}

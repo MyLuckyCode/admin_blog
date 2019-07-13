@@ -101,6 +101,52 @@ class Up{
         }
         imagedestroy($largeImage);
     }
+	
+	 static public function InitialSize($obj){	//输出本地图片且可自定义大小
+	 
+		$info=getimagesize($obj->url);
+        $w=$info[0];
+        $h=$info[1];
+        switch($info[2]){
+            case 1:
+                $im=imagecreatefromgif($obj->url);
+                break;
+            case 2:
+                $im=imagecreatefromjpeg($obj->url);
+                break;
+            case 3:
+                $im=imagecreatefrompng($obj->url);
+                break;
+        }
+        if($w>$h){
+            $p = $obj->type=='min' ? $obj->size/$h : $obj->size/$w ;
+        }else  $p = $obj->type=='min' ? $obj->size/$w : $obj->size/$h ;
+
+    
+    
+        $nw=floor($w*$p);
+        $nh=floor($h*$p);
+        $nim=imagecreatetruecolor($nw,$nh);
+        imagecopyresampled($nim,$im,0,0,0,0,$nw,$nh,$w,$h);
+        switch($info[2])
+        {
+            case 1:
+				 header('Content-Type:image/gif');
+                imagegif($nim);
+                break;
+            case 2:
+				header('Content-Type:image/jpeg');
+                imagejpeg($nim);
+                break;
+            case 3:
+				header('Content-Type:image/png');
+                imagepng($nim);
+                break;
+        }
+        imagedestroy($im);
+        imagedestroy($nim);
+		 
+	 }
     
     static public function clipping($obj){  //输出裁剪图片
         if($obj->type!='initial') $obj->url='http://localhost/smarty/admin_blog/'.$obj->url;
@@ -109,7 +155,6 @@ class Up{
         
         $w=$info[0];
         $h=$info[1];
-        
 
         switch($info[2]){
             case 1:

@@ -21,7 +21,7 @@ new Vue({
 			for(let i in this.form){
 				data.append(i,this.form[i]);
 			}
-			let res = await axios.post('?a=AdminAjax&m=addPicture',data,
+			let res = await axios.post('./api/admin/v1.0/?a=picture&m=addPicture',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			this.addPictureBtn=true;
 			console.log(res.data)
@@ -57,7 +57,7 @@ new Vue({
 let pictureItemView = new Vue({
 	el:'.pictureItemView',
 	async created(){
-		let res = await axios.get('?a=AdminAjax&m=getPictureList');
+		let res = await axios.get('./api/admin/v1.0/?a=picture&m=getPictureList');
 
 		let query = Url();
 		let type = query['type'] ? query['type'] : 1;
@@ -193,7 +193,7 @@ let pictureItemView = new Vue({
 			let data = new FormData();
 			data.append('moveData',JSON.stringify(o));
 			data.append('newPid',this.pictureListSelectedId);
-			let res = await axios.post('?a=AdminAjax&m=movePictureItem',data,
+			let res = await axios.post('./api/admin/v1.0/?a=picture&m=movePictureItem',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			console.log(res.data);
 			this._batExtraComplete(res.data);
@@ -214,7 +214,7 @@ let pictureItemView = new Vue({
 
 			let data = new FormData();
 			data.append('deleteData',JSON.stringify(o));
-			let res = await axios.post('?a=AdminAjax&m=deletePictureItem',data,
+			let res = await axios.post('./api/admin/v1.0/?a=picture&m=deletePictureItem',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			//pictureList.tags=res.data;
 			console.log(res.data)
@@ -265,7 +265,7 @@ let pictureItemView = new Vue({
 			let data = new FormData();
 			data.append('id',id);
 			data.append('name',input.value);
-			let res = await axios.post('?a=AdminAjax&m=editImageName',data,
+			let res = await axios.post('./api/admin/v1.0/?a=picture&m=editImageName',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 
 			if(res.data.state=='succ'){
@@ -289,7 +289,7 @@ let pictureItemView = new Vue({
 			let data = new FormData();
 			data.append('id',id);
 			data.append('name',this.itemNameHeader.postInput);
-			let res = await axios.post('?a=AdminAjax&m=editPicture',data,
+			let res = await axios.post('./api/admin/v1.0/?a=picture&m=editPicture',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			console.log(res.data)
 			if(res.data.state=='succ'){
@@ -307,7 +307,7 @@ let pictureItemView = new Vue({
 
 			let data = new FormData();
 			data.append('id',id);
-			let res = await axios.post('?a=AdminAjax&m=deletePicture',data,
+			let res = await axios.post('./api/admin/v1.0/?a=picture&m=deletePicture',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			console.log(res.data);
 			if(res.data.state=='succ'){

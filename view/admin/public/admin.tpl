@@ -5,7 +5,7 @@
 	<title>后台管理</title>
 	<link rel="stylesheet" href="view/admin/style/admin.css">
 	<link rel="stylesheet" href="view/admin/style/basic.css">
-	<link rel="stylesheet" href="//at.alicdn.com/t/font_1173901_adeirevwyuc.css">
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_1173901_1wxndzk73f9.css">
 </head>
 <body>
 
@@ -28,6 +28,7 @@
 				<li><a href="?a=brand" target="in"><i class="iconfont iconfont-20 iconpinpaibiaozhibrand2"></i>横幅管理</a></li>
 				<li><a href="?a=works" target="in"><i class="iconfont iconfont-20 iconzuopinzhanshi"></i>个人案例</a></li>
 				<li><a href="?a=picture" target="in"><i class="iconfont iconfont-20 icontupian"></i>图片管理</a></li>
+				<li><a href="?a=pattern" target="in"><i class="iconfont iconfont-20 iconxtgl6"></i>样式管理</a></li>
 				<li><a href="?a=user" target="in"><i class="iconfont iconfont-20 iconyonghu"></i>用户管理</a></li>
 				<!-- <li><a href="?a=setting" target="in"><i class="iconfont iconfont-20 iconsettings-"></i>系统设置</a></li> -->
 			</ul>

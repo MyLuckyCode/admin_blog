@@ -27,7 +27,7 @@ new Vue({
 			for(let i in this.form){
 				data.append(i,this.form[i]);
 			}
-			let res = await axios.post('?a=AdminAjax&m=addNav',data,
+			let res = await axios.post('./api/admin/v1.0/?a=nav&m=addNav',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			this.addNavBtn=true;
 			console.log(res.data)
@@ -75,7 +75,7 @@ let list = new Vue({
 		editNavBtn:true
 	},
 	async created(){
-		let res = await axios.get('?a=AdminAjax&m=getNavList');
+		let res = await axios.get('./api/admin/v1.0/?a=nav&m=getNavList');
 		
 		this.navData=res.data;
 	},
@@ -105,7 +105,7 @@ let list = new Vue({
 	        }).then( async () => {
 	        	let data=new FormData();
 	        	data.append('id',id);
-	        	let res = await axios.post('?a=AdminAjax&m=deleteNav',data,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
+	        	let res = await axios.post('./api/admin/v1.0/?a=nav&m=deleteNav',data,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 				this.$message(res.data.info);
 				console.log(res.data.state)
 				if(res.data.state=='succ'){
@@ -137,7 +137,7 @@ let list = new Vue({
 			for(let i in this.editForm){
 				data.append(i,this.editForm[i]);
 			}
-			let res = await axios.post('?a=AdminAjax&m=editNav',data,
+			let res = await axios.post('./api/admin/v1.0/?a=nav&m=editNav',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 
 			this.editNavBtn=true;

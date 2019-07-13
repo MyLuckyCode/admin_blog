@@ -178,7 +178,7 @@
 							{else}
 								<i class="item-image" :class="{'active' : isCheckBox({$value->id},{$value->pid},'{$value->uniqueId}')}" style="background-image:url(?a=images&uniqueId={$value->uniqueId}&type=small)"></i>
 							{/if}
-						    <div class="image-name">
+						    <div class="image-name" @click.stop>
 						    	<input type="text" value="{$value->name}" @blur="editImageName({$value->id})" style="display:none;" id="image-name-input-{$value->id}" >
 								<span @click="setImageName({$value->id})" id="image-name-span-{$value->id}">{$value->name}</span>
 						    </div>

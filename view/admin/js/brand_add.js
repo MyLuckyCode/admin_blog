@@ -76,7 +76,7 @@ new Vue({
 			data.append('target',this.target);
 			data.append('imgUrl',this.uniqueId);
 			data.append('disabled',this.disabled ? 1 : 0);
-			let res = await axios.post('?a=AdminAjax&m=addBrand',data,
+			let res = await axios.post('./api/admin/v1.0/?a=brand&m=addBrand',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			if(res.data.state=='succ'){
 

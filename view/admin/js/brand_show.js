@@ -28,7 +28,7 @@ new Vue({
 		        cancelButtonText: '取消',
 		        type: 'warning'
 		    }).then(async () => {
-		    	let res = await axios.get('?a=AdminAjax&m=deleteBrand',{
+		    	let res = await axios.get('./api/admin/v1.0/?a=brand&m=deleteBrand',{
 		    		params:{id}
 		    	})
 		    	if(res.data.state=='succ'){

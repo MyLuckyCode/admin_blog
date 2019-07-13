@@ -35,7 +35,7 @@ new Vue({
 	},
 	async created(){
 		let query=Url();
-		let res = await axios.get('?a=AdminAjax&m=getWorksOne',{
+		let res = await axios.get('./api/admin/v1.0/?a=works&m=getWorksOne',{
 			params:{
 				id:query['id']
 			}
@@ -94,7 +94,7 @@ new Vue({
 			data.append('imgUrl',this.uniqueId);
 			data.append('id',query['id']);
 			data.append('disabled',this.disabled ? 1 : 0);
-			let res = await axios.post('?a=AdminAjax&m=editWorks',data,
+			let res = await axios.post('./api/admin/v1.0/?a=works&m=editWorks',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			if(res.data.state=='succ'){
 

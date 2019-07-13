@@ -266,9 +266,9 @@ class ArticleModel extends Model{
         $_updateData=array('fabulous'=>array('fabulous+1'));
         return parent::update($_updateData, $_where);
     }
-    public function setCommentCount($id){   //添加评论时修改评论量
+    public function setCommentCount($id,$num=1){   //添加评论时修改评论量
         $_where=array("id=$id");
-        $_updateData=array('commentCount'=>array('commentCount+1'));
+        $_updateData=array('commentCount'=>array("commentCount+$num"));
         return parent::update($_updateData, $_where);
     }
     

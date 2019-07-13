@@ -5,7 +5,7 @@ class AdminAjaxAction extends Action{
     public function __construct(){
         //header('Access-Control-Allow-Origin:*');
     }
-    
+    /*
     public function addNav(){   //添加导航
         $_nav=new NavModel();
         $id = $_nav->addNav();
@@ -71,7 +71,9 @@ class AdminAjaxAction extends Action{
             echo '{"state":"error","info":"删除失败"}';
         }
     }
-    
+    */
+	
+	/*
     public function addPicture(){       //增加相册
         $_picture=new PictureModel();
         if($_picture->addPicture()){
@@ -130,11 +132,13 @@ class AdminAjaxAction extends Action{
             echo '{"state":"error","info":"系统出错，可能造成移动不干净"}';
         }
     }
-    
+    */
+	
     public function upImg(){    //上传图片
         echo Up::UpImg();
     }
-    
+	
+    /*
     public function getPictureItem(){   // 获取 图片 列表
         $_pictureItem = new PictureItemModel();
         $_type=$_POST['type'];
@@ -142,7 +146,8 @@ class AdminAjaxAction extends Action{
         $_pageSize=$_POST['pageSize'];
         echo json_encode($_pictureItem->getImageList($_type,$_currentPage,$_pageSize));
     }
-    
+    */
+	
     public function postClippingImage(){    //添加裁剪图片
         $image = new ImagesModel();
         $uniqueId = $image->addImage('clipping');
@@ -153,6 +158,7 @@ class AdminAjaxAction extends Action{
         }
     }
     
+	/*
     public function addBrand(){ //添加轮播图
         $_brand=new BrandModel();
         if($_brand->addBrand()){
@@ -184,7 +190,9 @@ class AdminAjaxAction extends Action{
             echo '{"state":"error","info":"修改失败，没有任何数据被修改"}';
         }
     }
-    
+    */
+	
+	/*
     public function getTimeList(){      //获取time数据
         $_time=new TimeModel();
         echo json_encode($_time->findAll());
@@ -216,7 +224,9 @@ class AdminAjaxAction extends Action{
             echo '{"state":"error","info":"修改失败"}';
         }
     }
-    
+    */
+	
+	/*
     public function addArticle(){      //添加文章
         $_article=new ArticleModel();
         if($_article->addArticle()){
@@ -293,7 +303,10 @@ class AdminAjaxAction extends Action{
             echo '{"state":"error","info":"设置失败"}';
         }
     }
-    
+	*/
+	
+	
+    /*
     public function deleteComment(){    //删除评论
         $comment = new CommentModel();
         if($comment->deleteComment()){
@@ -302,7 +315,9 @@ class AdminAjaxAction extends Action{
             echo '{"state":"error","info":"删除失败"}';
         }
     }
+	*/
     
+	/*
     public function addWorks(){ //添加作品
         $_works=new WorksModel();
         if($_works->addWorks()){
@@ -334,8 +349,100 @@ class AdminAjaxAction extends Action{
             echo '{"state":"error","info":"修改失败，没有任何数据被修改"}';
         }
     }
+	*/
+	
+	/*
+	public function addPattern(){       //增加样式分组
+        $_pattern=new PatternModel();
+        if($_pattern->addPattern()){
+            echo '{"state":"succ","info":"添加成功"}';
+        }else {
+            echo '{"state":"error","info":"添加失败"}';
+        }
+    }
     
+    public function editPattern(){  //修改样式分组
+        $_pattern=new PatternModel();
+        if($_pattern->editPattern()){
+            echo '{"state":"succ","info":"修改成功"}';
+        }else {
+            echo '{"state":"error","info":"修改失败"}';
+        }
+    }
     
+    public function deletePattern(){    //删除样式分组
+        $_pattern=new PatternModel();
+        if($_pattern->deletePattern()){
+            echo '{"state":"succ","info":"删除成功"}';
+        }else {
+            echo '{"state":"error","info":"系统出错，可能造成删除不干净"}';
+        }
+    }
+    
+    public function getPatternList(){   //获取全部样式分组
+        $_pattern=new PatternModel();
+        echo json_encode($_pattern->getPatternList());
+    }
+    
+    public function addPatternItem(){      //添加样式模板
+        $_pattern=new PatternItemModel();
+        if($_pattern->addPatternItem()){
+            echo '{"state":"succ","info":"添加成功"}';
+        }else {
+            echo '{"state":"error","info":"添加失败"}';
+        }
+    }
+	
+	public function deletePatternItem(){    //删除模板样式
+        $_pattern=new PatternItemModel();
+        if($_pattern->deletePatternItem()){
+            echo '{"state":"succ","info":"删除成功"}';
+        }else {
+            echo '{"state":"error","info":"系统出错，可能造成删除不干净"}';
+        }
+    }
+    
+    public function editPatternItemName(){    //修改模板样式名称
+        $_pattern=new PatternItemModel();
+        if($_pattern->editPatternName()){
+            echo '{"state":"succ","info":"修改成功"}';
+        }else {
+            echo '{"state":"error","info":"修改失败"}';
+        }
+    }
+
+    public function movePatternItem(){    //移动模板样式
+        $_pattern=new PatternItemModel();
+        if($_pattern->movePatternItem()){
+            echo '{"state":"succ","info":"移动成功"}';
+        }else {
+            echo '{"state":"error","info":"系统出错，可能造成移动不干净"}';
+        }
+    }
+	
+	public function getPatternItemOne(){    //获取一条样式
+        $_PatternItem=new PatternItemModel();
+        echo json_encode($_PatternItem->findOne());
+    }
+	
+	public function editPatternItem(){         //修改样式
+        $_PatternItem=new PatternItemModel();
+        if($_PatternItem->editPatternItem()){
+            echo '{"state":"succ","info":"修改成功"}';
+        }else {
+            echo '{"state":"error","info":"修改失败"}';
+        }
+    }
+	
+	public function getPatternItem(){   // 获取 图片 列表
+        $_patternItem = new PatternItemModel();
+        $_type=$_POST['type'];
+        $_currentPage=$_POST['currentPage'];
+        $_pageSize=$_POST['pageSize'];
+        echo json_encode($_patternItem->getPatternItemList($_type,$_currentPage,$_pageSize));
+    }
+	
+	*/
     
     
 }

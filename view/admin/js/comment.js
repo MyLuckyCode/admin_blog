@@ -22,15 +22,16 @@ new Vue({
 new Vue({
 	el:'.content',
 	methods:{
-		 deleteBrand(id){
+		 deleteBrand(id,content_id){
 			this.$confirm('此操作将永久删除该信息, 是否继续?', '提示', {
 		        confirmButtonText: '确定',
 		        cancelButtonText: '取消',
 		        type: 'warning'
 		    }).then(async () => {
-		    	let res = await axios.get('?a=AdminAjax&m=deleteComment',{
-		    		params:{id}
+		    	let res = await axios.get('./api/admin/v1.0/?a=comment&m=deleteComment',{
+		    		params:{id,content_id}
 		    	})
+		    	console.log(res)
 		    	if(res.data.state=='succ'){
 		    		window.location.reload();
 		    	}else {

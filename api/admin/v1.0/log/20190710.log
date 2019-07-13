@@ -1,0 +1,3 @@
+[10-Jul-2019 14:02:06 UTC] PHP Warning:  getimagesize(./upload/images/20190710/15627673265CTy.jpg): failed to open stream: No such file or directory in C:\myphp_www\PHPTutorial\WWW\smarty\admin_blog\public\Up.class.php on line 182
+[10-Jul-2019 14:02:06 UTC] PHP Notice:  Undefined variable: largeImage in C:\myphp_www\PHPTutorial\WWW\smarty\admin_blog\public\Up.class.php on line 214
+[10-Jul-2019 14:02:06 UTC] PHP Warning:  imagedestroy() expects parameter 1 to be resource, null given in C:\myphp_www\PHPTutorial\WWW\smarty\admin_blog\public\Up.class.php on line 214

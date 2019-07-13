@@ -145,7 +145,7 @@ Vue.component('Gallery',{
 			var CancelToken = axios.CancelToken;
 			var source = CancelToken.source();
 			this.ajax['getPictureItem']=source;
-			let res = await axios.post('?a=AdminAjax&m=getPictureItem',data,
+			let res = await axios.post('./api/admin/v1.0/?a=picture&m=getPictureItem',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				 cancelToken: source.token
 			});
@@ -156,7 +156,7 @@ Vue.component('Gallery',{
 		},
 		async _getPictureList(){
 			this.side.pictureList=[];
-			let res = await axios.get('?a=AdminAjax&m=getPictureList');
+			let res = await axios.get('./api/admin/v1.0/?a=picture&m=getPictureList');
 			this.side.pictureList=res.data;
 			let count=0;
 			res.data.forEach(item =>{

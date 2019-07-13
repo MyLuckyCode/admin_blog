@@ -13,7 +13,7 @@ class LoginAction extends Action{
     
     public function login(){
         if(isset($_POST['send'])){
-            if($_POST['user']=='灿强' && $_POST['pass']=='123456'){
+            if($_POST['user']=='admin' && $_POST['pass']=='123456'){
                 setcookie('user',$_POST['user']);
                 header("location:?a=admin");
             }else {

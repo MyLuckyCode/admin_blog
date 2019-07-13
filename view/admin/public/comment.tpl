@@ -43,12 +43,12 @@
 						{$value->name}
 					</div>
 					
-					<div class="tableItem-5 tableItem" title="{$value->content_id}">{$value->content_id}</div>
+					<div class="tableItem-5 tableItem" title="{$value->content_title}">{$value->content_title}</div>
 					<div class="tableItem-6 tableItem" title="{$value->date}">{$value->smallDate}</div>
 					<div class="tableItem-7 tableItem">
 						<div class="btn">
 							<!-- <a href="?a=brand&m=update&id={$value->id}&page={$pageCurrent}" class="edit">修改</a> -->
-							<a href="javascript:;" class="delete" @click="deleteBrand({$value->id})">删除</a>
+							<a href="javascript:;" class="delete" @click="deleteBrand({$value->id},{$value->content_id})">删除</a>
 						</div>
 					</div>
 					<div class="tableItem-8 tableItem">

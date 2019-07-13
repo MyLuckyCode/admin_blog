@@ -20,7 +20,7 @@ class Factory{
         if(isset($_GET['a']) && !empty($_GET['a'])){
             return $_GET['a'];
         }
-        return 'index';
+        return 'admin';
     }
     
     static public function setModel(){

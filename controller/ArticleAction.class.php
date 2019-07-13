@@ -34,7 +34,7 @@ class ArticleAction extends Action{
         $this->_tpl->display(VIEW_ADMIN.'article/add.tpl');
         
         $this->_tpl->assign('Style',$this->includesStyle('article_add'));   //注入css
-        $this->_tpl->assign('Script',$this->includesScript('article_add',['UpFileButton','Tailoring','Gallery'])); //注入 script
+        $this->_tpl->assign('Script',$this->includesScript('article_add',['UpFileButton','Tailoring','Gallery','Format'])); //注入 script
         
         $_nav=new NavModel();
         $this->_tpl->assign('findAllNav', $_nav->findAllNav());
@@ -53,7 +53,7 @@ class ArticleAction extends Action{
         $this->_tpl->display(VIEW_ADMIN.'article/update.tpl');
         
         $this->_tpl->assign('Style',$this->includesStyle('article_update'));   //注入css
-        $this->_tpl->assign('Script',$this->includesScript('article_update',['UpFileButton','Tailoring','Gallery'])); //注入 script
+        $this->_tpl->assign('Script',$this->includesScript('article_update',['UpFileButton','Tailoring','Gallery','Format'])); //注入 script
         
         $_nav=new NavModel();
         $this->_tpl->assign('findAllNav', $_nav->findAllNav());

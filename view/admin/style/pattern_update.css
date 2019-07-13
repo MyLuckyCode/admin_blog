@@ -1,0 +1,63 @@
+
+body{
+	padding-left:2%;
+}
+
+
+
+
+
+.form{
+	padding-top:20px;
+	width:700px;
+	height:auto;
+}
+.form > div{
+	display: flex;
+	margin-bottom: 20px;
+}
+.form > div > span{
+	font-size:14px;
+	color:#606266;
+	flex:0 0 80px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.form .nav .el-radio-group label,.form .label .el-checkbox-group label{
+	margin-bottom: 5px;
+	margin-top:5px;
+}
+.form .content{
+	display: block;
+	width:800px;
+}
+
+.form .submit{
+	padding-left:80px;
+	padding-top:10px;
+}
+.form .submit > button{
+	width:300px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -34,7 +34,7 @@ new Vue({
 	},
 	async created(){
 		let query=Url();
-		let res = await axios.get('?a=AdminAjax&m=getBrandOne',{
+		let res = await axios.get('./api/admin/v1.0/?a=brand&m=getBrandOne',{
 			params:{
 				id:query['id']
 			}
@@ -91,7 +91,7 @@ new Vue({
 			data.append('imgUrl',this.uniqueId);
 			data.append('id',query['id']);
 			data.append('disabled',this.disabled ? 1 : 0);
-			let res = await axios.post('?a=AdminAjax&m=editBrand',data,
+			let res = await axios.post('./api/admin/v1.0/?a=brand&m=editBrand',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			if(res.data.state=='succ'){
 

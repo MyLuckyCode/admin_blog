@@ -17,13 +17,20 @@
 </div>
 
 <div class="FocusToday">
-    <div class="top">
-        <span class="titles">【今日焦点】</span>{$focusArticle[0]->title}
-        <img class="new_icon" src="view/admin/images/new.gif" alt="">
-    </div>
-    <p class="bottom">
-        {$focusArticle[0]->info}
-    </p>
+	{if isset($focusArticle[0])}
+		<div class="top">
+			<span class="titles">【今日焦点】</span>{$focusArticle[0]->title}
+			<img class="new_icon" src="view/admin/images/new.gif" alt="">
+		</div>
+		<p class="bottom">
+			{$focusArticle[0]->info}
+		</p>
+	{else}
+		<div class="top">
+			<span class="titles">【今日焦点】</span>焦点文章已经删除
+			<img class="new_icon" src="view/admin/images/new.gif" alt="">
+		</div>
+	{/if}
 </div>
 
 

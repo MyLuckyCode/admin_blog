@@ -21,7 +21,7 @@ new Vue({
 			for(let i in this.form){
 				data.append(i,this.form[i]);
 			}
-			let res = await axios.post('?a=AdminAjax&m=addLabel',data,
+			let res = await axios.post('./api/admin/v1.0/?a=label&m=addLabel',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			this.addLabelBtn=true;
 			if(res.data.state=="succ") {	//添加成功
@@ -65,7 +65,7 @@ let list = new Vue({
 		editLabelBtn:true
 	},
 	async created(){
-		let res = await axios.get('?a=AdminAjax&m=getLabelList');
+		let res = await axios.get('./api/admin/v1.0/?a=label&m=getLabelList');
 		console.log(res.data)
 		this.tags=res.data;
 	},
@@ -80,7 +80,7 @@ let list = new Vue({
 	        }).then( async () => {
 	        	let data=new FormData();
 	        	data.append('id',id);
-	        	let res = await axios.post('?a=AdminAjax&m=deleteLabel',data,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
+	        	let res = await axios.post('./api/admin/v1.0/?a=label&m=deleteLabel',data,{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 				this.$message(res.data.info);
 				console.log(res.data.state)
 				if(res.data.state=='succ'){
@@ -110,7 +110,7 @@ let list = new Vue({
 			for(let i in this.editForm){
 				data.append(i,this.editForm[i]);
 			}
-			let res = await axios.post('?a=AdminAjax&m=editLabel',data,
+			let res = await axios.post('./api/admin/v1.0/?a=label&m=editLabel',data,
 				{headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
 			console.log(res.data)
 			this.editLabelBtn=true;

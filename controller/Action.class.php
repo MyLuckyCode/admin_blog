@@ -19,7 +19,7 @@ class Action{
             <link rel="stylesheet" href="view/admin/style/basic.css">
 	       <link rel="stylesheet" href="view/admin/style/{$name}.css">
 	       <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-	       <link rel="stylesheet" href="//at.alicdn.com/t/font_1173901_urh6ncj47n.css">
+	       <link rel="stylesheet" href="//at.alicdn.com/t/font_1173901_2to1lnbg6gq.css">
 ENG;
     }
     
