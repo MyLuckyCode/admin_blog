@@ -254,10 +254,10 @@ background: rgb(244,245,249);
 
 @keyframes Format-loading{
 	 from{
-        transFormat: rotate(0deg);
+        transform: rotate(0deg);
     }
     to{
-        transFormat: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 

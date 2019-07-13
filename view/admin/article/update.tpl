@@ -114,8 +114,8 @@
 				v-model="form.disabled">
 			</el-switch>
 		</div>
-		<Gallery :galleryflag.sync="GalleryFlag" v-if="GalleryFlag" :event-type="galleryEventType" :select="GallerySelect" @confirm="galleryConfirm" ></Gallery>
-		<Format :formatflag.sync="FormatFlag" v-if="FormatFlag" :event-type="formatEventType" :select="formatSelect" @confirm="formatConfirm" ></Format>
+		<Gallery :galleryflag.sync="GalleryFlag" v-show="GalleryFlag" :event-type="galleryEventType" :select="GallerySelect" @confirm="galleryConfirm" ></Gallery>
+		<Format :formatflag.sync="FormatFlag" v-show="FormatFlag" :event-type="formatEventType" :select="formatSelect" @confirm="formatConfirm" ></Format>
 		<Tailoring :tailoringflag.sync="Tailoringflag" v-if="Tailoringflag" :event-type="tailoringEventType" :src="clippingImageUrl" :clipping-info="clippingInfo" @confirm="TailoringConfirm"></Tailoring>
 		<div class="submit">
 			<el-button type="primary" @click="postEditArticle" :loading="!addArticleBth">修改</el-button>
