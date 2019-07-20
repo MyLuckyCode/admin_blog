@@ -5,11 +5,13 @@
 class Api{
 	
 	public function __construct(){
-		
+		if(!isset($_SESSION['user']) || empty($_SESSION['user'])){
+			exit('{"code":"404","info":"api验证出错"}');
+		}
 	}
 	
 	public function index(){
-		exit('{"code":"404","data":"api错误"}');
+		exit('{"code":"404","info":"api错误"}');
 	}
 	
 	public function run(){

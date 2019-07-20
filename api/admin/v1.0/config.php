@@ -1,7 +1,7 @@
 <?php
 
 
-
+session_start(); 
 define('ROOT_PATH',substr(dirname(__FILE__),0,-14));
 
 define('DB_DNS','mysql:lost=localhost;dbname=admin_blog');
