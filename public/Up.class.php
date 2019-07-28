@@ -149,7 +149,7 @@ class Up{
 	 }
     
     static public function clipping($obj){  //输出裁剪图片
-        if($obj->type!='initial') $obj->url='http://localhost/smarty/admin_blog/'.$obj->url;
+        if($obj->type!='initial') $obj->url='http://localhost/admin_blog/'.$obj->url;
         
         $info=getimagesize($obj->url);
         
@@ -222,7 +222,7 @@ class Up{
         
         $rouer = self::getUrl('clippingImages',$obj->uniqueId);
         
-        if($obj->type!='initial') $obj->url='http://localhost/smarty/admin_blog/'.$obj->url;
+        if($obj->type!='initial') $obj->url='http://localhost/admin_blog/'.$obj->url;
         
         $info=getimagesize($obj->url);
         

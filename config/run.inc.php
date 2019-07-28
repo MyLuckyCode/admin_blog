@@ -13,7 +13,7 @@ define('VIEW_ADMIN',ROOT_PATH.'view/admin/'); // 后台模版
 
 define('DB_DNS','mysql:lost=localhost;dbname=admin_blog');
 define('DB_USER','root');
-define('DB_PASS','');
+define('DB_PASS','root');
 define('DB_FREFIX','blog_');
 
 define('PAGE_SIZE',10);   //分页

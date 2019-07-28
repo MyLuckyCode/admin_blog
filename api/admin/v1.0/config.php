@@ -6,7 +6,7 @@ define('ROOT_PATH',substr(dirname(__FILE__),0,-14));
 
 define('DB_DNS','mysql:lost=localhost;dbname=admin_blog');
 define('DB_USER','root');
-define('DB_PASS','');
+define('DB_PASS','root');
 define('DB_FREFIX','blog_');
 
 define('PAGE_SIZE',10);   //分页
@@ -18,7 +18,7 @@ ini_set('log_error','no');      //开启日志写入功能
 //ini_set('display_errors','off');    //屏蔽错误在页面显示
 error_reporting(E_ALL);                //输出所有错误
 ini_set('error_log','./log/'.$d[0].$d[2].$d[3].'.log');        //日志存放位置
-
+date_default_timezone_set('Asia/shanghai');
 spl_autoload_register(function($_className){
     if(substr($_className,-6)=='Action'){
         require ROOT_PATH.'/controller/'.$_className.'.class.php';
